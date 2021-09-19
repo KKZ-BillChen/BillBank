@@ -1,0 +1,260 @@
+// Copyright 2015 gRPC authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.helloworld";
+option java_outer_classname = "HelloWorldProto";
+option objc_class_prefix = "HLW";
+
+package bank;
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+
+  // Create account
+  rpc CreateAccount (CreateAccountRequest) returns (CreateAccountReply) {}
+  // Close account
+  rpc CloseAccount (SimpleRequest) returns (SimpleReply) {}
+  // Show account
+  rpc ShowAccount (SimpleRequest) returns (ShowAccountReply) {}
+
+  // User Login
+  rpc UserLogin (LoginRequest) returns (LoginReply) {}
+  // Manager Login
+  rpc ManagerLogin (LoginRequest) returns (LoginReply) {}
+  // Change Password
+  rpc ChangePassword (ChangePasswordRequest) returns (SimpleReply) {}
+
+  // User Deposit
+	//User Demand Deposit
+	rpc UserDemandDeposit (UserDemandRequest) returns (SimpleReply) {}
+	//User Saving Deposit
+	rpc UserSavingDeposit (UserSavingDepositRequest) returns (SimpleReply) {}
+  // User Withdraw
+	//User Demand Withdraw
+	rpc UserDemandWithdraw (UserDemandRequest) returns (SimpleReply) {}
+	//User Saving Withdraw
+	rpc UserSavingWithdraw (UserSavingWithdrawRequest) returns (SimpleReply) {}
+  //User Transfer
+  rpc UserTransfer (UserTransferRequest) returns (SimpleReply){}
+  //User Loan
+  rpc UserLoan (UserDemandRequest) returns (SimpleReply){}
+  //User Loan Pay
+  rpc UserLoanPay (UserLoanPayRequest) returns (SimpleReply){}
+
+  //Manager Lock User
+  rpc LockUser (SimpleRequest) returns (SimpleReply){}
+  //Manager Unlock User
+  rpc UnlockUser (SimpleRequest) returns (SimpleReply){}
+  //All Account Basic List
+  rpc AllAccountsBasicStatus (EmptyRequest) returns (AllAccountsBasicStatusReply){}
+  //All Account Saving Document
+  rpc AllAccountsSavingDocument (EmptyRequest) returns (AllAccountsSavingDocumentReply){}
+  //Manager Detials Change
+  rpc ChangeManager (ChangeManagerRequest) returns (SimpleReply){}
+  //Exit Client
+  rpc Exit (EmptyRequest) returns (EmptyReply) {}
+  //Judge Locked
+  rpc JudgeLocked (SimpleRequest) returns (LockedReply) {}
+  //Leave Message
+  rpc LeaveMessage (LeaveMessageRequest) returns (SimpleReply) {}
+  //Show Message
+  rpc ShowMessage (SimpleRequest) returns (ShowMessageReply) {}
+}
+
+enum BankError {
+	Succeed = 0;
+	Err_Selection_Input = 1;
+	Err_Nofile = 2;
+	Err_Input_Name = 3;
+	Err_Pswd = 4;
+	Err_Initial_Balance_Match_Type = 5;
+	Err_Over_Draft = 6;
+	Err_Over_Loan = 7;
+	Err_Noid = 8;
+	Err_balance_loan_no_clear = 9;
+	Err_lock = 10;
+	Err_Negative_Amount = 11;
+	Err_Manager_Login = 12;
+	Err_already_lock = 13;
+	Err_already_unlock = 14;
+	Err_Negative_Loan = 15;
+	Err_seen_used_password = 16;
+	Err_seen_modify_details = 17;
+	Err_Unknown = 18;
+	Err_Login_User_Pswd = 19;
+	Err_NoType = 20;
+}
+enum TypeOfAccount {
+	Type_User = 0;
+	Type_Manager = 1;
+}
+enum TypeOfSavings {
+	Minutes_5 = 0;
+	Minutes_10 = 1;
+}
+
+message SaveBalance {
+	TypeOfSavings type = 1;
+	double balance = 2;
+	string tm = 3;
+}
+// The account
+message AccountMsg {
+	int32 id = 1;
+	string name = 2;
+	int32 type = 3;
+	double demand_balance = 4;
+	string password = 5;
+	int32 locked = 6;
+	double loan = 7;
+	double auto_payment = 8;
+	repeated SaveBalance balances = 9;
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
+message EmptyRequest {
+
+}
+message EmptyReply {
+
+}
+message LockedReply{
+  int32 locked = 1;
+}
+message SimpleRequest {
+  int32 id = 1;
+}
+
+message SimpleReply {
+  BankError code = 1;
+}
+
+//=====================//
+
+// The request for create account
+message CreateAccountRequest {
+	string name = 1;
+	string pswd = 2;
+	int32 type = 3;
+	double balance = 4;
+}
+// The reply for create account
+message CreateAccountReply {
+	BankError code = 1;
+	int32 id = 2;
+}
+
+//=====================//
+
+// The request for user login
+message LoginRequest {
+	int32 id = 1;
+	string pswd = 2;
+}
+// The reply for user login
+message LoginReply {
+	BankError code = 1;
+	string name = 2;
+	int32 locked = 3;
+}
+
+//=====================//
+
+message UserDemandRequest {
+	int32 id = 1;
+	double amount = 2;
+}
+
+//=====================//
+
+message UserSavingDepositRequest {
+	int32 id = 1;
+	double amount = 2;
+	TypeOfSavings type = 3;
+}
+//=====================//
+
+message ShowAccountReply {
+  AccountMsg acc = 1;
+}
+
+//=====================//
+
+message UserSavingWithdrawRequest {
+	int32 id = 1;
+	int32 serial = 2;
+}
+
+//=====================//
+
+message ChangePasswordRequest {
+	int32 id = 1;
+	string password = 2;
+}
+
+//=====================//
+message ChangeManagerRequest {
+	string name = 1;
+	string pswd = 2;
+}
+
+//=====================//
+
+message UserTransferRequest {
+	int32 original_id = 1;
+	int32 transfer_id = 2;
+	double amount = 3;
+}
+
+message UserLoanPayRequest{
+	int32 id = 1;
+	int32 n = 2;
+	double amount = 3;
+}
+
+//=====================//
+
+message AllAccountsBasicStatusReply{
+	repeated AccountMsg accs = 1;
+}
+
+message AllAccountsSavingDocumentReply{
+	repeated AccountMsg accs = 1;
+}
+
+//====================//
+message UserMessage{
+	int32 id = 1;
+	string msg_str = 2;
+	string tm = 3;
+}
+message ShowMessageReply{
+	int32 code = 1;
+	repeated UserMessage msgs = 2;
+}
+message LeaveMessageRequest{
+	UserMessage msg = 1;
+	int32 to = 2;
+}

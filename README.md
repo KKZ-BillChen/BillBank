@@ -22,3 +22,5 @@ Then, after building and change settings, create files like this:
   c:\home\vcpkg
   
   c:\home\packages_include
+
+At last, duplicate C:\home\grpc-bank\Bill_music.wav to C:\home\grpc-bank\x64\Debug

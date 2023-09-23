@@ -28,6 +28,75 @@ void BankServer::print_account_status(const SimpleRequest& req, ShowAccountReply
 	}
 	reply.set_allocated_acc(acc_obj);
 }
+void BankServer::clean_message(const SelectRequest& req, SimpleReply& reply) {
+	if (!req.sure()) {
+		if (req.id())
+			m_users[where_id(req.id())].m_msgs.clear();
+		else
+			m_db.Manager_msgs.clear();
+	}
+	reply.set_code(Succeed);
+}
+void BankServer::leave_message(const LeaveMessageRequest& req, SimpleReply& reply) {
+	pair < pair< int, string >, tm > ah;
+	ah.first.first = req.msg().id();
+	ah.first.second = req.msg().msg_str();
+	ah.second = m_db.read_time();
+	if (req.to())
+		if (!acc_exist(req.to())) {
+			reply.set_code(Err_Noid);
+			return;
+		}
+	if (req.to() == req.msg().id()) {
+		reply.set_code(Err_ID_Message);
+		return;
+	}
+	if (req.to()) {
+		if (10 <= m_users[where_id(req.to())].m_msgs.size()) {
+			reply.set_code(Err_FullMessage);
+			return;
+		}
+		m_users[where_id(req.to())].m_msgs.push_back(ah);
+	}
+	else {
+		if (1000 <= m_db.Manager_msgs.size()) {
+			reply.set_code(Err_FullMessage);
+			return;
+		}
+		m_db.Manager_msgs.push_back(ah);
+	}
+	reply.set_code(Succeed);
+}
+void BankServer::check_message(const SimpleRequest& req, CheckMessageReply& reply) {
+	if(req.id())
+		reply.set_msg_size(m_users[where_id(req.id())].m_msgs.size());
+	else
+		reply.set_msg_size(m_db.Manager_msgs.size());
+}
+void BankServer::receive_message(const SimpleRequest& req,ShowMessageReply& reply) {
+	if (req.id()) {
+		for (int i = 0; i < m_users[where_id(req.id())].m_msgs.size(); i++) {
+			std::ostringstream oss;
+			oss << std::put_time(&m_users[where_id(req.id())].m_msgs[i].second, "%Y-%m-%d %H:%M:%S");
+			auto tm_str = oss.str();
+			UserMessage* msg_obj = reply.add_msgs();
+			msg_obj->set_id(m_users[where_id(req.id())].m_msgs[i].first.first);
+			msg_obj->set_msg_str(m_users[where_id(req.id())].m_msgs[i].first.second);
+			msg_obj->set_tm(tm_str);
+		}
+	}
+	else {
+		for (int i = 0; i < m_db.Manager_msgs.size(); i++) {
+			std::ostringstream oss;
+			oss << std::put_time(&m_db.Manager_msgs[i].second, "%Y-%m-%d %H:%M:%S");
+			auto tm_str = oss.str();
+			UserMessage* msg_obj = reply.add_msgs();
+			msg_obj->set_id(m_db.Manager_msgs[i].first.first);
+			msg_obj->set_msg_str(m_db.Manager_msgs[i].first.second);
+			msg_obj->set_tm(tm_str);
+		}
+	}
+}
 void BankServer::print_holder_list(const EmptyRequest& req, AllAccountsBasicStatusReply& reply) {
 	for (int i = 0; i < m_users.size(); i++) {
 		AccountMsg* acc_obj = reply.add_accs();

@@ -43,6 +43,10 @@ static const char* Greeter_method_names[] = {
   "/bank.Greeter/ChangeManager",
   "/bank.Greeter/Exit",
   "/bank.Greeter/JudgeLocked",
+  "/bank.Greeter/LeaveMessage",
+  "/bank.Greeter/ShowMessage",
+  "/bank.Greeter/CheckMessage",
+  "/bank.Greeter/CleanMessage",
 };
 
 std::unique_ptr< Greeter::Stub> Greeter::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -73,6 +77,10 @@ Greeter::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   , rpcmethod_ChangeManager_(Greeter_method_names[18], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Exit_(Greeter_method_names[19], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_JudgeLocked_(Greeter_method_names[20], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_LeaveMessage_(Greeter_method_names[21], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ShowMessage_(Greeter_method_names[22], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CheckMessage_(Greeter_method_names[23], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CleanMessage_(Greeter_method_names[24], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Greeter::Stub::SayHello(::grpc::ClientContext* context, const ::bank::HelloRequest& request, ::bank::HelloReply* response) {
@@ -558,6 +566,98 @@ void Greeter::Stub::experimental_async::JudgeLocked(::grpc::ClientContext* conte
   return result;
 }
 
+::grpc::Status Greeter::Stub::LeaveMessage(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest& request, ::bank::SimpleReply* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::bank::LeaveMessageRequest, ::bank::SimpleReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_LeaveMessage_, context, request, response);
+}
+
+void Greeter::Stub::experimental_async::LeaveMessage(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest* request, ::bank::SimpleReply* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::bank::LeaveMessageRequest, ::bank::SimpleReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_LeaveMessage_, context, request, response, std::move(f));
+}
+
+void Greeter::Stub::experimental_async::LeaveMessage(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest* request, ::bank::SimpleReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_LeaveMessage_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::bank::SimpleReply>* Greeter::Stub::PrepareAsyncLeaveMessageRaw(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::bank::SimpleReply, ::bank::LeaveMessageRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_LeaveMessage_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::bank::SimpleReply>* Greeter::Stub::AsyncLeaveMessageRaw(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncLeaveMessageRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Greeter::Stub::ShowMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::bank::ShowMessageReply* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::bank::SimpleRequest, ::bank::ShowMessageReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ShowMessage_, context, request, response);
+}
+
+void Greeter::Stub::experimental_async::ShowMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::ShowMessageReply* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::bank::SimpleRequest, ::bank::ShowMessageReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ShowMessage_, context, request, response, std::move(f));
+}
+
+void Greeter::Stub::experimental_async::ShowMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::ShowMessageReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ShowMessage_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::bank::ShowMessageReply>* Greeter::Stub::PrepareAsyncShowMessageRaw(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::bank::ShowMessageReply, ::bank::SimpleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ShowMessage_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::bank::ShowMessageReply>* Greeter::Stub::AsyncShowMessageRaw(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncShowMessageRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Greeter::Stub::CheckMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::bank::CheckMessageReply* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::bank::SimpleRequest, ::bank::CheckMessageReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CheckMessage_, context, request, response);
+}
+
+void Greeter::Stub::experimental_async::CheckMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::CheckMessageReply* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::bank::SimpleRequest, ::bank::CheckMessageReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CheckMessage_, context, request, response, std::move(f));
+}
+
+void Greeter::Stub::experimental_async::CheckMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::CheckMessageReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CheckMessage_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::bank::CheckMessageReply>* Greeter::Stub::PrepareAsyncCheckMessageRaw(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::bank::CheckMessageReply, ::bank::SimpleRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CheckMessage_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::bank::CheckMessageReply>* Greeter::Stub::AsyncCheckMessageRaw(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCheckMessageRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Greeter::Stub::CleanMessage(::grpc::ClientContext* context, const ::bank::SelectRequest& request, ::bank::SimpleReply* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::bank::SelectRequest, ::bank::SimpleReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CleanMessage_, context, request, response);
+}
+
+void Greeter::Stub::experimental_async::CleanMessage(::grpc::ClientContext* context, const ::bank::SelectRequest* request, ::bank::SimpleReply* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::bank::SelectRequest, ::bank::SimpleReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CleanMessage_, context, request, response, std::move(f));
+}
+
+void Greeter::Stub::experimental_async::CleanMessage(::grpc::ClientContext* context, const ::bank::SelectRequest* request, ::bank::SimpleReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CleanMessage_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::bank::SimpleReply>* Greeter::Stub::PrepareAsyncCleanMessageRaw(::grpc::ClientContext* context, const ::bank::SelectRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::bank::SimpleReply, ::bank::SelectRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CleanMessage_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::bank::SimpleReply>* Greeter::Stub::AsyncCleanMessageRaw(::grpc::ClientContext* context, const ::bank::SelectRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCleanMessageRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 Greeter::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Greeter_method_names[0],
@@ -769,6 +869,46 @@ Greeter::Service::Service() {
              ::bank::LockedReply* resp) {
                return service->JudgeLocked(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Greeter_method_names[21],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Greeter::Service, ::bank::LeaveMessageRequest, ::bank::SimpleReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Greeter::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::bank::LeaveMessageRequest* req,
+             ::bank::SimpleReply* resp) {
+               return service->LeaveMessage(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Greeter_method_names[22],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Greeter::Service, ::bank::SimpleRequest, ::bank::ShowMessageReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Greeter::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::bank::SimpleRequest* req,
+             ::bank::ShowMessageReply* resp) {
+               return service->ShowMessage(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Greeter_method_names[23],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Greeter::Service, ::bank::SimpleRequest, ::bank::CheckMessageReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Greeter::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::bank::SimpleRequest* req,
+             ::bank::CheckMessageReply* resp) {
+               return service->CheckMessage(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Greeter_method_names[24],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Greeter::Service, ::bank::SelectRequest, ::bank::SimpleReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Greeter::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::bank::SelectRequest* req,
+             ::bank::SimpleReply* resp) {
+               return service->CleanMessage(ctx, req, resp);
+             }, this)));
 }
 
 Greeter::Service::~Service() {
@@ -915,6 +1055,34 @@ Greeter::Service::~Service() {
 }
 
 ::grpc::Status Greeter::Service::JudgeLocked(::grpc::ServerContext* context, const ::bank::SimpleRequest* request, ::bank::LockedReply* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Greeter::Service::LeaveMessage(::grpc::ServerContext* context, const ::bank::LeaveMessageRequest* request, ::bank::SimpleReply* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Greeter::Service::ShowMessage(::grpc::ServerContext* context, const ::bank::SimpleRequest* request, ::bank::ShowMessageReply* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Greeter::Service::CheckMessage(::grpc::ServerContext* context, const ::bank::SimpleRequest* request, ::bank::CheckMessageReply* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Greeter::Service::CleanMessage(::grpc::ServerContext* context, const ::bank::SelectRequest* request, ::bank::SimpleReply* response) {
   (void) context;
   (void) request;
   (void) response;

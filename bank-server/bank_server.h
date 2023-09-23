@@ -28,6 +28,8 @@ struct BankServer {
 	bool reach_time(tm time_1, tm time_2);
 	bool leap_or_common_year(int year);
 	bool big_or_small_month(int month);
+	void leave_message(const LeaveMessageRequest& req, SimpleReply& reply);
+	void receive_message(const SimpleRequest& req, ShowMessageReply& reply);
 	void print_holder_list(const EmptyRequest& req, AllAccountsBasicStatusReply& reply);
 	void new_account(const CreateAccountRequest& req, CreateAccountReply& reply);
 	void user_Login(const LoginRequest& req, LoginReply& reply);
@@ -47,6 +49,8 @@ struct BankServer {
 	void unlock_account(const SimpleRequest& req, SimpleReply& reply);
 	void manager_details_change(const ChangeManagerRequest& req, SimpleReply& reply);
 	void toexit(const EmptyRequest& req, EmptyReply& reply);
+	void check_message(const SimpleRequest& req, CheckMessageReply& reply);
+	void clean_message(const SelectRequest& req, SimpleReply& reply);
 	void count_lending_profit();
 	void count_auto_pay_loan();
 	void count_time_profit();

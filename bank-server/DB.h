@@ -8,6 +8,7 @@ struct DB {
 	const int MAX_RETRY = 5;
 	string Manager_password;
 	string Manager_name;
+	vector<pair < pair< int, string >, tm >> Manager_msgs;
 	DB() = default;
 	BankError init(vector<Account>& users);
 	BankError read(vector<Account>& users);

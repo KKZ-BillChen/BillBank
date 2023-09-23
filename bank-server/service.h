@@ -36,6 +36,10 @@ using bank::AllAccountsSavingDocumentReply;
 using bank::ChangeManagerRequest;
 using bank::Greeter;
 using bank::LockedReply;
+using bank::LeaveMessageRequest;
+using bank::ShowMessageReply;
+using bank::CheckMessageReply;
+using bank::SelectRequest;
 // Logic and data behind the server's behavior.
 class GreeterServiceImpl final : public Greeter::Service {
 public:
@@ -62,6 +66,10 @@ public:
     Status ChangeManager(ServerContext* context, const ChangeManagerRequest* request, SimpleReply* reply) override;
     Status Exit(ServerContext* context, const EmptyRequest* request, EmptyReply* reply) override;
     Status JudgeLocked(ServerContext* context, const SimpleRequest* request, LockedReply* reply) override;
+    Status LeaveMessage(ServerContext* context, const LeaveMessageRequest* request, SimpleReply* reply) override;
+    Status ShowMessage(ServerContext* context, const SimpleRequest* request, ShowMessageReply* reply) override;
+    Status CheckMessage(ServerContext* context, const SimpleRequest* request, CheckMessageReply* reply) override;
+    Status CleanMessage(ServerContext* context, const SelectRequest* request, SimpleReply* reply) override;
 private:
     BankServer m_server;
 };

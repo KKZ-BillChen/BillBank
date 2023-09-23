@@ -47,7 +47,7 @@ struct TableStruct_bank_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[23]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[28]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -71,6 +71,9 @@ extern ChangeManagerRequestDefaultTypeInternal _ChangeManagerRequest_default_ins
 class ChangePasswordRequest;
 struct ChangePasswordRequestDefaultTypeInternal;
 extern ChangePasswordRequestDefaultTypeInternal _ChangePasswordRequest_default_instance_;
+class CheckMessageReply;
+struct CheckMessageReplyDefaultTypeInternal;
+extern CheckMessageReplyDefaultTypeInternal _CheckMessageReply_default_instance_;
 class CreateAccountReply;
 struct CreateAccountReplyDefaultTypeInternal;
 extern CreateAccountReplyDefaultTypeInternal _CreateAccountReply_default_instance_;
@@ -89,6 +92,9 @@ extern HelloReplyDefaultTypeInternal _HelloReply_default_instance_;
 class HelloRequest;
 struct HelloRequestDefaultTypeInternal;
 extern HelloRequestDefaultTypeInternal _HelloRequest_default_instance_;
+class LeaveMessageRequest;
+struct LeaveMessageRequestDefaultTypeInternal;
+extern LeaveMessageRequestDefaultTypeInternal _LeaveMessageRequest_default_instance_;
 class LockedReply;
 struct LockedReplyDefaultTypeInternal;
 extern LockedReplyDefaultTypeInternal _LockedReply_default_instance_;
@@ -101,9 +107,15 @@ extern LoginRequestDefaultTypeInternal _LoginRequest_default_instance_;
 class SaveBalance;
 struct SaveBalanceDefaultTypeInternal;
 extern SaveBalanceDefaultTypeInternal _SaveBalance_default_instance_;
+class SelectRequest;
+struct SelectRequestDefaultTypeInternal;
+extern SelectRequestDefaultTypeInternal _SelectRequest_default_instance_;
 class ShowAccountReply;
 struct ShowAccountReplyDefaultTypeInternal;
 extern ShowAccountReplyDefaultTypeInternal _ShowAccountReply_default_instance_;
+class ShowMessageReply;
+struct ShowMessageReplyDefaultTypeInternal;
+extern ShowMessageReplyDefaultTypeInternal _ShowMessageReply_default_instance_;
 class SimpleReply;
 struct SimpleReplyDefaultTypeInternal;
 extern SimpleReplyDefaultTypeInternal _SimpleReply_default_instance_;
@@ -116,6 +128,9 @@ extern UserDemandRequestDefaultTypeInternal _UserDemandRequest_default_instance_
 class UserLoanPayRequest;
 struct UserLoanPayRequestDefaultTypeInternal;
 extern UserLoanPayRequestDefaultTypeInternal _UserLoanPayRequest_default_instance_;
+class UserMessage;
+struct UserMessageDefaultTypeInternal;
+extern UserMessageDefaultTypeInternal _UserMessage_default_instance_;
 class UserSavingDepositRequest;
 struct UserSavingDepositRequestDefaultTypeInternal;
 extern UserSavingDepositRequestDefaultTypeInternal _UserSavingDepositRequest_default_instance_;
@@ -132,21 +147,26 @@ template<> ::bank::AllAccountsBasicStatusReply* Arena::CreateMaybeMessage<::bank
 template<> ::bank::AllAccountsSavingDocumentReply* Arena::CreateMaybeMessage<::bank::AllAccountsSavingDocumentReply>(Arena*);
 template<> ::bank::ChangeManagerRequest* Arena::CreateMaybeMessage<::bank::ChangeManagerRequest>(Arena*);
 template<> ::bank::ChangePasswordRequest* Arena::CreateMaybeMessage<::bank::ChangePasswordRequest>(Arena*);
+template<> ::bank::CheckMessageReply* Arena::CreateMaybeMessage<::bank::CheckMessageReply>(Arena*);
 template<> ::bank::CreateAccountReply* Arena::CreateMaybeMessage<::bank::CreateAccountReply>(Arena*);
 template<> ::bank::CreateAccountRequest* Arena::CreateMaybeMessage<::bank::CreateAccountRequest>(Arena*);
 template<> ::bank::EmptyReply* Arena::CreateMaybeMessage<::bank::EmptyReply>(Arena*);
 template<> ::bank::EmptyRequest* Arena::CreateMaybeMessage<::bank::EmptyRequest>(Arena*);
 template<> ::bank::HelloReply* Arena::CreateMaybeMessage<::bank::HelloReply>(Arena*);
 template<> ::bank::HelloRequest* Arena::CreateMaybeMessage<::bank::HelloRequest>(Arena*);
+template<> ::bank::LeaveMessageRequest* Arena::CreateMaybeMessage<::bank::LeaveMessageRequest>(Arena*);
 template<> ::bank::LockedReply* Arena::CreateMaybeMessage<::bank::LockedReply>(Arena*);
 template<> ::bank::LoginReply* Arena::CreateMaybeMessage<::bank::LoginReply>(Arena*);
 template<> ::bank::LoginRequest* Arena::CreateMaybeMessage<::bank::LoginRequest>(Arena*);
 template<> ::bank::SaveBalance* Arena::CreateMaybeMessage<::bank::SaveBalance>(Arena*);
+template<> ::bank::SelectRequest* Arena::CreateMaybeMessage<::bank::SelectRequest>(Arena*);
 template<> ::bank::ShowAccountReply* Arena::CreateMaybeMessage<::bank::ShowAccountReply>(Arena*);
+template<> ::bank::ShowMessageReply* Arena::CreateMaybeMessage<::bank::ShowMessageReply>(Arena*);
 template<> ::bank::SimpleReply* Arena::CreateMaybeMessage<::bank::SimpleReply>(Arena*);
 template<> ::bank::SimpleRequest* Arena::CreateMaybeMessage<::bank::SimpleRequest>(Arena*);
 template<> ::bank::UserDemandRequest* Arena::CreateMaybeMessage<::bank::UserDemandRequest>(Arena*);
 template<> ::bank::UserLoanPayRequest* Arena::CreateMaybeMessage<::bank::UserLoanPayRequest>(Arena*);
+template<> ::bank::UserMessage* Arena::CreateMaybeMessage<::bank::UserMessage>(Arena*);
 template<> ::bank::UserSavingDepositRequest* Arena::CreateMaybeMessage<::bank::UserSavingDepositRequest>(Arena*);
 template<> ::bank::UserSavingWithdrawRequest* Arena::CreateMaybeMessage<::bank::UserSavingWithdrawRequest>(Arena*);
 template<> ::bank::UserTransferRequest* Arena::CreateMaybeMessage<::bank::UserTransferRequest>(Arena*);
@@ -175,12 +195,16 @@ enum BankError : int {
   Err_Unknown = 18,
   Err_Login_User_Pswd = 19,
   Err_NoType = 20,
+  Err_FullMessage = 21,
+  Err_ID_Message = 22,
+  Err_Pswd_Length = 23,
+  Err_Pswd_Unmatched = 24,
   BankError_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   BankError_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool BankError_IsValid(int value);
 constexpr BankError BankError_MIN = Succeed;
-constexpr BankError BankError_MAX = Err_NoType;
+constexpr BankError BankError_MAX = Err_Pswd_Unmatched;
 constexpr int BankError_ARRAYSIZE = BankError_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* BankError_descriptor();
@@ -663,6 +687,143 @@ class AccountMsg PROTOBUF_FINAL :
 };
 // -------------------------------------------------------------------
 
+class CheckMessageReply PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:bank.CheckMessageReply) */ {
+ public:
+  inline CheckMessageReply() : CheckMessageReply(nullptr) {}
+  virtual ~CheckMessageReply();
+  explicit constexpr CheckMessageReply(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CheckMessageReply(const CheckMessageReply& from);
+  CheckMessageReply(CheckMessageReply&& from) noexcept
+    : CheckMessageReply() {
+    *this = ::std::move(from);
+  }
+
+  inline CheckMessageReply& operator=(const CheckMessageReply& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CheckMessageReply& operator=(CheckMessageReply&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const CheckMessageReply& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CheckMessageReply* internal_default_instance() {
+    return reinterpret_cast<const CheckMessageReply*>(
+               &_CheckMessageReply_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(CheckMessageReply& a, CheckMessageReply& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CheckMessageReply* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CheckMessageReply* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CheckMessageReply* New() const final {
+    return CreateMaybeMessage<CheckMessageReply>(nullptr);
+  }
+
+  CheckMessageReply* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<CheckMessageReply>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const CheckMessageReply& from);
+  void MergeFrom(const CheckMessageReply& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CheckMessageReply* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "bank.CheckMessageReply";
+  }
+  protected:
+  explicit CheckMessageReply(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_bank_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMsgSizeFieldNumber = 1,
+  };
+  // int32 msg_size = 1;
+  void clear_msg_size();
+  ::PROTOBUF_NAMESPACE_ID::int32 msg_size() const;
+  void set_msg_size(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_msg_size() const;
+  void _internal_set_msg_size(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:bank.CheckMessageReply)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::int32 msg_size_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_bank_2eproto;
+};
+// -------------------------------------------------------------------
+
 class HelloRequest PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:bank.HelloRequest) */ {
  public:
@@ -706,7 +867,7 @@ class HelloRequest PROTOBUF_FINAL :
                &_HelloRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(HelloRequest& a, HelloRequest& b) {
     a.Swap(&b);
@@ -850,7 +1011,7 @@ class HelloReply PROTOBUF_FINAL :
                &_HelloReply_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(HelloReply& a, HelloReply& b) {
     a.Swap(&b);
@@ -994,7 +1155,7 @@ class EmptyRequest PROTOBUF_FINAL :
                &_EmptyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(EmptyRequest& a, EmptyRequest& b) {
     a.Swap(&b);
@@ -1118,7 +1279,7 @@ class EmptyReply PROTOBUF_FINAL :
                &_EmptyReply_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(EmptyReply& a, EmptyReply& b) {
     a.Swap(&b);
@@ -1242,7 +1403,7 @@ class LockedReply PROTOBUF_FINAL :
                &_LockedReply_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(LockedReply& a, LockedReply& b) {
     a.Swap(&b);
@@ -1336,6 +1497,154 @@ class LockedReply PROTOBUF_FINAL :
 };
 // -------------------------------------------------------------------
 
+class SelectRequest PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:bank.SelectRequest) */ {
+ public:
+  inline SelectRequest() : SelectRequest(nullptr) {}
+  virtual ~SelectRequest();
+  explicit constexpr SelectRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SelectRequest(const SelectRequest& from);
+  SelectRequest(SelectRequest&& from) noexcept
+    : SelectRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SelectRequest& operator=(const SelectRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SelectRequest& operator=(SelectRequest&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const SelectRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SelectRequest* internal_default_instance() {
+    return reinterpret_cast<const SelectRequest*>(
+               &_SelectRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(SelectRequest& a, SelectRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SelectRequest* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SelectRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SelectRequest* New() const final {
+    return CreateMaybeMessage<SelectRequest>(nullptr);
+  }
+
+  SelectRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<SelectRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const SelectRequest& from);
+  void MergeFrom(const SelectRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SelectRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "bank.SelectRequest";
+  }
+  protected:
+  explicit SelectRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_bank_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSureFieldNumber = 1,
+    kIdFieldNumber = 2,
+  };
+  // int32 sure = 1;
+  void clear_sure();
+  ::PROTOBUF_NAMESPACE_ID::int32 sure() const;
+  void set_sure(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_sure() const;
+  void _internal_set_sure(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 id = 2;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::int32 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:bank.SelectRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::int32 sure_;
+  ::PROTOBUF_NAMESPACE_ID::int32 id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_bank_2eproto;
+};
+// -------------------------------------------------------------------
+
 class SimpleRequest PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:bank.SimpleRequest) */ {
  public:
@@ -1379,7 +1688,7 @@ class SimpleRequest PROTOBUF_FINAL :
                &_SimpleRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    9;
 
   friend void swap(SimpleRequest& a, SimpleRequest& b) {
     a.Swap(&b);
@@ -1516,7 +1825,7 @@ class SimpleReply PROTOBUF_FINAL :
                &_SimpleReply_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(SimpleReply& a, SimpleReply& b) {
     a.Swap(&b);
@@ -1653,7 +1962,7 @@ class CreateAccountRequest PROTOBUF_FINAL :
                &_CreateAccountRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(CreateAccountRequest& a, CreateAccountRequest& b) {
     a.Swap(&b);
@@ -1837,7 +2146,7 @@ class CreateAccountReply PROTOBUF_FINAL :
                &_CreateAccountReply_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    12;
 
   friend void swap(CreateAccountReply& a, CreateAccountReply& b) {
     a.Swap(&b);
@@ -1985,7 +2294,7 @@ class LoginRequest PROTOBUF_FINAL :
                &_LoginRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    13;
 
   friend void swap(LoginRequest& a, LoginRequest& b) {
     a.Swap(&b);
@@ -2140,7 +2449,7 @@ class LoginReply PROTOBUF_FINAL :
                &_LoginReply_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    14;
 
   friend void swap(LoginReply& a, LoginReply& b) {
     a.Swap(&b);
@@ -2306,7 +2615,7 @@ class UserDemandRequest PROTOBUF_FINAL :
                &_UserDemandRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    15;
 
   friend void swap(UserDemandRequest& a, UserDemandRequest& b) {
     a.Swap(&b);
@@ -2454,7 +2763,7 @@ class UserSavingDepositRequest PROTOBUF_FINAL :
                &_UserSavingDepositRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    16;
 
   friend void swap(UserSavingDepositRequest& a, UserSavingDepositRequest& b) {
     a.Swap(&b);
@@ -2613,7 +2922,7 @@ class ShowAccountReply PROTOBUF_FINAL :
                &_ShowAccountReply_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    17;
 
   friend void swap(ShowAccountReply& a, ShowAccountReply& b) {
     a.Swap(&b);
@@ -2759,7 +3068,7 @@ class UserSavingWithdrawRequest PROTOBUF_FINAL :
                &_UserSavingWithdrawRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    18;
 
   friend void swap(UserSavingWithdrawRequest& a, UserSavingWithdrawRequest& b) {
     a.Swap(&b);
@@ -2907,7 +3216,7 @@ class ChangePasswordRequest PROTOBUF_FINAL :
                &_ChangePasswordRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    19;
 
   friend void swap(ChangePasswordRequest& a, ChangePasswordRequest& b) {
     a.Swap(&b);
@@ -3062,7 +3371,7 @@ class ChangeManagerRequest PROTOBUF_FINAL :
                &_ChangeManagerRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    20;
 
   friend void swap(ChangeManagerRequest& a, ChangeManagerRequest& b) {
     a.Swap(&b);
@@ -3224,7 +3533,7 @@ class UserTransferRequest PROTOBUF_FINAL :
                &_UserTransferRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    21;
 
   friend void swap(UserTransferRequest& a, UserTransferRequest& b) {
     a.Swap(&b);
@@ -3383,7 +3692,7 @@ class UserLoanPayRequest PROTOBUF_FINAL :
                &_UserLoanPayRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    22;
 
   friend void swap(UserLoanPayRequest& a, UserLoanPayRequest& b) {
     a.Swap(&b);
@@ -3542,7 +3851,7 @@ class AllAccountsBasicStatusReply PROTOBUF_FINAL :
                &_AllAccountsBasicStatusReply_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    23;
 
   friend void swap(AllAccountsBasicStatusReply& a, AllAccountsBasicStatusReply& b) {
     a.Swap(&b);
@@ -3688,7 +3997,7 @@ class AllAccountsSavingDocumentReply PROTOBUF_FINAL :
                &_AllAccountsSavingDocumentReply_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    24;
 
   friend void swap(AllAccountsSavingDocumentReply& a, AllAccountsSavingDocumentReply& b) {
     a.Swap(&b);
@@ -3786,6 +4095,482 @@ class AllAccountsSavingDocumentReply PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::bank::AccountMsg > accs_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_bank_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UserMessage PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:bank.UserMessage) */ {
+ public:
+  inline UserMessage() : UserMessage(nullptr) {}
+  virtual ~UserMessage();
+  explicit constexpr UserMessage(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UserMessage(const UserMessage& from);
+  UserMessage(UserMessage&& from) noexcept
+    : UserMessage() {
+    *this = ::std::move(from);
+  }
+
+  inline UserMessage& operator=(const UserMessage& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserMessage& operator=(UserMessage&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const UserMessage& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UserMessage* internal_default_instance() {
+    return reinterpret_cast<const UserMessage*>(
+               &_UserMessage_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    25;
+
+  friend void swap(UserMessage& a, UserMessage& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UserMessage* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserMessage* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline UserMessage* New() const final {
+    return CreateMaybeMessage<UserMessage>(nullptr);
+  }
+
+  UserMessage* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<UserMessage>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const UserMessage& from);
+  void MergeFrom(const UserMessage& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UserMessage* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "bank.UserMessage";
+  }
+  protected:
+  explicit UserMessage(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_bank_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMsgStrFieldNumber = 2,
+    kTmFieldNumber = 3,
+    kIdFieldNumber = 1,
+  };
+  // string msg_str = 2;
+  void clear_msg_str();
+  const std::string& msg_str() const;
+  void set_msg_str(const std::string& value);
+  void set_msg_str(std::string&& value);
+  void set_msg_str(const char* value);
+  void set_msg_str(const char* value, size_t size);
+  std::string* mutable_msg_str();
+  std::string* release_msg_str();
+  void set_allocated_msg_str(std::string* msg_str);
+  private:
+  const std::string& _internal_msg_str() const;
+  void _internal_set_msg_str(const std::string& value);
+  std::string* _internal_mutable_msg_str();
+  public:
+
+  // string tm = 3;
+  void clear_tm();
+  const std::string& tm() const;
+  void set_tm(const std::string& value);
+  void set_tm(std::string&& value);
+  void set_tm(const char* value);
+  void set_tm(const char* value, size_t size);
+  std::string* mutable_tm();
+  std::string* release_tm();
+  void set_allocated_tm(std::string* tm);
+  private:
+  const std::string& _internal_tm() const;
+  void _internal_set_tm(const std::string& value);
+  std::string* _internal_mutable_tm();
+  public:
+
+  // int32 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::int32 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:bank.UserMessage)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr msg_str_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tm_;
+  ::PROTOBUF_NAMESPACE_ID::int32 id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_bank_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ShowMessageReply PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:bank.ShowMessageReply) */ {
+ public:
+  inline ShowMessageReply() : ShowMessageReply(nullptr) {}
+  virtual ~ShowMessageReply();
+  explicit constexpr ShowMessageReply(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ShowMessageReply(const ShowMessageReply& from);
+  ShowMessageReply(ShowMessageReply&& from) noexcept
+    : ShowMessageReply() {
+    *this = ::std::move(from);
+  }
+
+  inline ShowMessageReply& operator=(const ShowMessageReply& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ShowMessageReply& operator=(ShowMessageReply&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ShowMessageReply& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ShowMessageReply* internal_default_instance() {
+    return reinterpret_cast<const ShowMessageReply*>(
+               &_ShowMessageReply_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    26;
+
+  friend void swap(ShowMessageReply& a, ShowMessageReply& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ShowMessageReply* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ShowMessageReply* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ShowMessageReply* New() const final {
+    return CreateMaybeMessage<ShowMessageReply>(nullptr);
+  }
+
+  ShowMessageReply* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ShowMessageReply>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ShowMessageReply& from);
+  void MergeFrom(const ShowMessageReply& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ShowMessageReply* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "bank.ShowMessageReply";
+  }
+  protected:
+  explicit ShowMessageReply(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_bank_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMsgsFieldNumber = 1,
+  };
+  // repeated .bank.UserMessage msgs = 1;
+  int msgs_size() const;
+  private:
+  int _internal_msgs_size() const;
+  public:
+  void clear_msgs();
+  ::bank::UserMessage* mutable_msgs(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::bank::UserMessage >*
+      mutable_msgs();
+  private:
+  const ::bank::UserMessage& _internal_msgs(int index) const;
+  ::bank::UserMessage* _internal_add_msgs();
+  public:
+  const ::bank::UserMessage& msgs(int index) const;
+  ::bank::UserMessage* add_msgs();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::bank::UserMessage >&
+      msgs() const;
+
+  // @@protoc_insertion_point(class_scope:bank.ShowMessageReply)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::bank::UserMessage > msgs_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_bank_2eproto;
+};
+// -------------------------------------------------------------------
+
+class LeaveMessageRequest PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:bank.LeaveMessageRequest) */ {
+ public:
+  inline LeaveMessageRequest() : LeaveMessageRequest(nullptr) {}
+  virtual ~LeaveMessageRequest();
+  explicit constexpr LeaveMessageRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  LeaveMessageRequest(const LeaveMessageRequest& from);
+  LeaveMessageRequest(LeaveMessageRequest&& from) noexcept
+    : LeaveMessageRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline LeaveMessageRequest& operator=(const LeaveMessageRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LeaveMessageRequest& operator=(LeaveMessageRequest&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const LeaveMessageRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const LeaveMessageRequest* internal_default_instance() {
+    return reinterpret_cast<const LeaveMessageRequest*>(
+               &_LeaveMessageRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    27;
+
+  friend void swap(LeaveMessageRequest& a, LeaveMessageRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(LeaveMessageRequest* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LeaveMessageRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline LeaveMessageRequest* New() const final {
+    return CreateMaybeMessage<LeaveMessageRequest>(nullptr);
+  }
+
+  LeaveMessageRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<LeaveMessageRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const LeaveMessageRequest& from);
+  void MergeFrom(const LeaveMessageRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(LeaveMessageRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "bank.LeaveMessageRequest";
+  }
+  protected:
+  explicit LeaveMessageRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_bank_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMsgFieldNumber = 1,
+    kToFieldNumber = 2,
+  };
+  // .bank.UserMessage msg = 1;
+  bool has_msg() const;
+  private:
+  bool _internal_has_msg() const;
+  public:
+  void clear_msg();
+  const ::bank::UserMessage& msg() const;
+  ::bank::UserMessage* release_msg();
+  ::bank::UserMessage* mutable_msg();
+  void set_allocated_msg(::bank::UserMessage* msg);
+  private:
+  const ::bank::UserMessage& _internal_msg() const;
+  ::bank::UserMessage* _internal_mutable_msg();
+  public:
+  void unsafe_arena_set_allocated_msg(
+      ::bank::UserMessage* msg);
+  ::bank::UserMessage* unsafe_arena_release_msg();
+
+  // int32 to = 2;
+  void clear_to();
+  ::PROTOBUF_NAMESPACE_ID::int32 to() const;
+  void set_to(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_to() const;
+  void _internal_set_to(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:bank.LeaveMessageRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::bank::UserMessage* msg_;
+  ::PROTOBUF_NAMESPACE_ID::int32 to_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_bank_2eproto;
 };
@@ -4188,6 +4973,30 @@ AccountMsg::balances() const {
 
 // -------------------------------------------------------------------
 
+// CheckMessageReply
+
+// int32 msg_size = 1;
+inline void CheckMessageReply::clear_msg_size() {
+  msg_size_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CheckMessageReply::_internal_msg_size() const {
+  return msg_size_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CheckMessageReply::msg_size() const {
+  // @@protoc_insertion_point(field_get:bank.CheckMessageReply.msg_size)
+  return _internal_msg_size();
+}
+inline void CheckMessageReply::_internal_set_msg_size(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  msg_size_ = value;
+}
+inline void CheckMessageReply::set_msg_size(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_msg_size(value);
+  // @@protoc_insertion_point(field_set:bank.CheckMessageReply.msg_size)
+}
+
+// -------------------------------------------------------------------
+
 // HelloRequest
 
 // string name = 1;
@@ -4346,6 +5155,50 @@ inline void LockedReply::_internal_set_locked(::PROTOBUF_NAMESPACE_ID::int32 val
 inline void LockedReply::set_locked(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_locked(value);
   // @@protoc_insertion_point(field_set:bank.LockedReply.locked)
+}
+
+// -------------------------------------------------------------------
+
+// SelectRequest
+
+// int32 sure = 1;
+inline void SelectRequest::clear_sure() {
+  sure_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 SelectRequest::_internal_sure() const {
+  return sure_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 SelectRequest::sure() const {
+  // @@protoc_insertion_point(field_get:bank.SelectRequest.sure)
+  return _internal_sure();
+}
+inline void SelectRequest::_internal_set_sure(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  sure_ = value;
+}
+inline void SelectRequest::set_sure(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_sure(value);
+  // @@protoc_insertion_point(field_set:bank.SelectRequest.sure)
+}
+
+// int32 id = 2;
+inline void SelectRequest::clear_id() {
+  id_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 SelectRequest::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 SelectRequest::id() const {
+  // @@protoc_insertion_point(field_get:bank.SelectRequest.id)
+  return _internal_id();
+}
+inline void SelectRequest::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  id_ = value;
+}
+inline void SelectRequest::set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:bank.SelectRequest.id)
 }
 
 // -------------------------------------------------------------------
@@ -5460,9 +6313,315 @@ AllAccountsSavingDocumentReply::accs() const {
   return accs_;
 }
 
+// -------------------------------------------------------------------
+
+// UserMessage
+
+// int32 id = 1;
+inline void UserMessage::clear_id() {
+  id_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 UserMessage::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 UserMessage::id() const {
+  // @@protoc_insertion_point(field_get:bank.UserMessage.id)
+  return _internal_id();
+}
+inline void UserMessage::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  id_ = value;
+}
+inline void UserMessage::set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:bank.UserMessage.id)
+}
+
+// string msg_str = 2;
+inline void UserMessage::clear_msg_str() {
+  msg_str_.ClearToEmpty();
+}
+inline const std::string& UserMessage::msg_str() const {
+  // @@protoc_insertion_point(field_get:bank.UserMessage.msg_str)
+  return _internal_msg_str();
+}
+inline void UserMessage::set_msg_str(const std::string& value) {
+  _internal_set_msg_str(value);
+  // @@protoc_insertion_point(field_set:bank.UserMessage.msg_str)
+}
+inline std::string* UserMessage::mutable_msg_str() {
+  // @@protoc_insertion_point(field_mutable:bank.UserMessage.msg_str)
+  return _internal_mutable_msg_str();
+}
+inline const std::string& UserMessage::_internal_msg_str() const {
+  return msg_str_.Get();
+}
+inline void UserMessage::_internal_set_msg_str(const std::string& value) {
+  
+  msg_str_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void UserMessage::set_msg_str(std::string&& value) {
+  
+  msg_str_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:bank.UserMessage.msg_str)
+}
+inline void UserMessage::set_msg_str(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  msg_str_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:bank.UserMessage.msg_str)
+}
+inline void UserMessage::set_msg_str(const char* value,
+    size_t size) {
+  
+  msg_str_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:bank.UserMessage.msg_str)
+}
+inline std::string* UserMessage::_internal_mutable_msg_str() {
+  
+  return msg_str_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* UserMessage::release_msg_str() {
+  // @@protoc_insertion_point(field_release:bank.UserMessage.msg_str)
+  return msg_str_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void UserMessage::set_allocated_msg_str(std::string* msg_str) {
+  if (msg_str != nullptr) {
+    
+  } else {
+    
+  }
+  msg_str_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), msg_str,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:bank.UserMessage.msg_str)
+}
+
+// string tm = 3;
+inline void UserMessage::clear_tm() {
+  tm_.ClearToEmpty();
+}
+inline const std::string& UserMessage::tm() const {
+  // @@protoc_insertion_point(field_get:bank.UserMessage.tm)
+  return _internal_tm();
+}
+inline void UserMessage::set_tm(const std::string& value) {
+  _internal_set_tm(value);
+  // @@protoc_insertion_point(field_set:bank.UserMessage.tm)
+}
+inline std::string* UserMessage::mutable_tm() {
+  // @@protoc_insertion_point(field_mutable:bank.UserMessage.tm)
+  return _internal_mutable_tm();
+}
+inline const std::string& UserMessage::_internal_tm() const {
+  return tm_.Get();
+}
+inline void UserMessage::_internal_set_tm(const std::string& value) {
+  
+  tm_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void UserMessage::set_tm(std::string&& value) {
+  
+  tm_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:bank.UserMessage.tm)
+}
+inline void UserMessage::set_tm(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  tm_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:bank.UserMessage.tm)
+}
+inline void UserMessage::set_tm(const char* value,
+    size_t size) {
+  
+  tm_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:bank.UserMessage.tm)
+}
+inline std::string* UserMessage::_internal_mutable_tm() {
+  
+  return tm_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* UserMessage::release_tm() {
+  // @@protoc_insertion_point(field_release:bank.UserMessage.tm)
+  return tm_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void UserMessage::set_allocated_tm(std::string* tm) {
+  if (tm != nullptr) {
+    
+  } else {
+    
+  }
+  tm_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), tm,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:bank.UserMessage.tm)
+}
+
+// -------------------------------------------------------------------
+
+// ShowMessageReply
+
+// repeated .bank.UserMessage msgs = 1;
+inline int ShowMessageReply::_internal_msgs_size() const {
+  return msgs_.size();
+}
+inline int ShowMessageReply::msgs_size() const {
+  return _internal_msgs_size();
+}
+inline void ShowMessageReply::clear_msgs() {
+  msgs_.Clear();
+}
+inline ::bank::UserMessage* ShowMessageReply::mutable_msgs(int index) {
+  // @@protoc_insertion_point(field_mutable:bank.ShowMessageReply.msgs)
+  return msgs_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::bank::UserMessage >*
+ShowMessageReply::mutable_msgs() {
+  // @@protoc_insertion_point(field_mutable_list:bank.ShowMessageReply.msgs)
+  return &msgs_;
+}
+inline const ::bank::UserMessage& ShowMessageReply::_internal_msgs(int index) const {
+  return msgs_.Get(index);
+}
+inline const ::bank::UserMessage& ShowMessageReply::msgs(int index) const {
+  // @@protoc_insertion_point(field_get:bank.ShowMessageReply.msgs)
+  return _internal_msgs(index);
+}
+inline ::bank::UserMessage* ShowMessageReply::_internal_add_msgs() {
+  return msgs_.Add();
+}
+inline ::bank::UserMessage* ShowMessageReply::add_msgs() {
+  // @@protoc_insertion_point(field_add:bank.ShowMessageReply.msgs)
+  return _internal_add_msgs();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::bank::UserMessage >&
+ShowMessageReply::msgs() const {
+  // @@protoc_insertion_point(field_list:bank.ShowMessageReply.msgs)
+  return msgs_;
+}
+
+// -------------------------------------------------------------------
+
+// LeaveMessageRequest
+
+// .bank.UserMessage msg = 1;
+inline bool LeaveMessageRequest::_internal_has_msg() const {
+  return this != internal_default_instance() && msg_ != nullptr;
+}
+inline bool LeaveMessageRequest::has_msg() const {
+  return _internal_has_msg();
+}
+inline void LeaveMessageRequest::clear_msg() {
+  if (GetArena() == nullptr && msg_ != nullptr) {
+    delete msg_;
+  }
+  msg_ = nullptr;
+}
+inline const ::bank::UserMessage& LeaveMessageRequest::_internal_msg() const {
+  const ::bank::UserMessage* p = msg_;
+  return p != nullptr ? *p : reinterpret_cast<const ::bank::UserMessage&>(
+      ::bank::_UserMessage_default_instance_);
+}
+inline const ::bank::UserMessage& LeaveMessageRequest::msg() const {
+  // @@protoc_insertion_point(field_get:bank.LeaveMessageRequest.msg)
+  return _internal_msg();
+}
+inline void LeaveMessageRequest::unsafe_arena_set_allocated_msg(
+    ::bank::UserMessage* msg) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(msg_);
+  }
+  msg_ = msg;
+  if (msg) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:bank.LeaveMessageRequest.msg)
+}
+inline ::bank::UserMessage* LeaveMessageRequest::release_msg() {
+  
+  ::bank::UserMessage* temp = msg_;
+  msg_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::bank::UserMessage* LeaveMessageRequest::unsafe_arena_release_msg() {
+  // @@protoc_insertion_point(field_release:bank.LeaveMessageRequest.msg)
+  
+  ::bank::UserMessage* temp = msg_;
+  msg_ = nullptr;
+  return temp;
+}
+inline ::bank::UserMessage* LeaveMessageRequest::_internal_mutable_msg() {
+  
+  if (msg_ == nullptr) {
+    auto* p = CreateMaybeMessage<::bank::UserMessage>(GetArena());
+    msg_ = p;
+  }
+  return msg_;
+}
+inline ::bank::UserMessage* LeaveMessageRequest::mutable_msg() {
+  // @@protoc_insertion_point(field_mutable:bank.LeaveMessageRequest.msg)
+  return _internal_mutable_msg();
+}
+inline void LeaveMessageRequest::set_allocated_msg(::bank::UserMessage* msg) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete msg_;
+  }
+  if (msg) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(msg);
+    if (message_arena != submessage_arena) {
+      msg = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, msg, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  msg_ = msg;
+  // @@protoc_insertion_point(field_set_allocated:bank.LeaveMessageRequest.msg)
+}
+
+// int32 to = 2;
+inline void LeaveMessageRequest::clear_to() {
+  to_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 LeaveMessageRequest::_internal_to() const {
+  return to_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 LeaveMessageRequest::to() const {
+  // @@protoc_insertion_point(field_get:bank.LeaveMessageRequest.to)
+  return _internal_to();
+}
+inline void LeaveMessageRequest::_internal_set_to(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  to_ = value;
+}
+inline void LeaveMessageRequest::set_to(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_to(value);
+  // @@protoc_insertion_point(field_set:bank.LeaveMessageRequest.to)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

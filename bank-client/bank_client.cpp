@@ -40,23 +40,18 @@ void BankClient::print_Bank_introduction() {
 
 	std::cout << "	5.Three kinds of Account" << endl;
 
-	std::cout << "		Nightshade - Nonpareil(N) Áú¿û-¼«Æ·:  " << endl;
-	std::cout << "		  Initial Saving Balance should greater than 6666666 BIL." << endl;
+	std::cout << "		Nightshade - Nonpareil(N) :  " << endl;
+	std::cout << "		  Initial Saving Balance should greater than 500000 BIL." << endl;
 	std::cout << "		  Loan Upper Limit is 1000000 BIL." << endl;
 	std::cout << "	        Lending Rate is 2.27 % / min." << endl;
 	std::cout << "		  Saving interest is 2.45 % for 5 mins ;  5.16 % for 10 mins" << endl;
-	//std::cout << "	Geranium - Gorgeous (G) ÌìóÃ¿û-»ªÀö£º" << endl;
-	//std::cout << "	  Initial Balance should greater than 666666 BIL." << endl;
-	//std::cout << "	  Loan Upper Limit is 100000 BIL." << endl;
-	//std::cout << "	  Lending Rate is 2.98 %." << endl;
-	//std::cout << "	  Saving interest is 2.05 % for 5 mins ;  4.45 % for 10 mins" << endl;
-	std::cout << "		Hollyhock - High-ranking(H) Êñ¿û-¸ß½×:  " << endl;
-	std::cout << "		  Initial Saving Balance should greater than 66666 BIL." << endl;
+	std::cout << "		Hollyhock - High-ranking(H) :  " << endl;
+	std::cout << "		  Initial Saving Balance should greater than 50000 BIL." << endl;
 	std::cout << "		  Loan Upper Limit is 10000 BIL." << endl;
 	std::cout << "		  Lending Rate is 3.75 % / min." << endl;
 	std::cout << "		  Saving interest is 1.88 % for 5 mins ;  3.89 % for 10 mins" << endl;
-	std::cout << "		Okra - Ordinary (O) Çï¿û-ÆÕÍ¨:  " << endl;
-	std::cout << "		  Initial Saving Balance should greater than 666 BIL." << endl;
+	std::cout << "		Okra - Ordinary (O) :  " << endl;
+	std::cout << "		  Initial Saving Balance should greater than 500 BIL." << endl;
 	std::cout << "		  Loan Upper Limit is 1000 BIL." << endl;
 	std::cout << "		  Lending Rate is 4.19 %." << endl;
 	std::cout << "		  Saving interest is 1.50 % for 5 mins ;  3.03 % for 10 mins" << endl;
@@ -199,6 +194,12 @@ void BankClient::print_Err(BankError error) {
 	case Err_balance_loan_no_clear:
 		std::cout << "ERROR ! LOAN AND BALANCE HAVE NOT BE CLEAND ! " << endl;
 		break;
+	case Err_FullMessage:
+		std::cout << "ERROR ! YOU TARGET IS FULL MESSAGE ! " << endl;
+		break;
+	case Err_ID_Message:
+		std::cout << "ERROR ! YOU CAN NOT SEND MESSAGE TO YOURSELF !" << endl;
+		break;
 	default:
 		std::cout << "UNKNOWN ERROR !" << endl;
 		break;
@@ -308,51 +309,115 @@ pair<int, string> BankClient::manage_Login() {
 	return pair<int, string>(-1, "");
 }
 
-
+void BankClient::print_check_message(TypeOfAccount type, int id) {
+	SimpleRequest req;
+	CheckMessageReply reply;
+	int size;
+	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD pos;
+	pair<int, int> XY = GetXY();
+	while (ref) {
+		req.set_id(id);
+		m_client.CheckMessage(req, reply);
+		size = reply.msg_size();
+		XY = GetXY();
+		if (type == Type_User) {
+			pos = { 53,15 };
+			SetConsoleCursorPosition(hOut, pos);
+			if (10 <= size) {
+				color(13);
+				cout << " FULL";
+				color(7);
+			}
+			else if (size > 0) {
+				color(11);
+				cout << " NEW " << size;
+				color(7);
+			}
+			else {
+				cout << "        ";
+			}
+				
+		}
+		else {
+			pos = { 49,13 };
+			SetConsoleCursorPosition(hOut, pos);
+			if (1000 <= size) {
+				color(13);
+				cout << " FULL";
+				color(7);
+			}
+			else if (size > 0) {
+				color(11);
+				cout << " NEW " << size;
+				color(7);
+			}
+			else {
+				cout << "         ";
+			}
+		}
+		pos = { (short)XY.first,(short)XY.second };
+		SetConsoleCursorPosition(hOut, pos);
+		sleep_for(seconds(1));
+	}
+	
+}
+pair<int, int> BankClient::GetXY()
+{
+	HANDLE hStdout;
+	CONSOLE_SCREEN_BUFFER_INFO pBuffer;
+	hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
+	GetConsoleScreenBufferInfo(hStdout, &pBuffer);
+	return pair<int, int>(pBuffer.dwCursorPosition.X, pBuffer.dwCursorPosition.Y);
+}
 void BankClient::show_menu(TypeOfAccount type, int id, string name) {
 	clear_screen();
-	
+	//HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	//pair<int,int> XY = GetXY();
+	//SetConsoleCursorPosition(hOut, pos);
 	switch (type) {
-	case Type_Manager:
-		print_self_details(0, name);
-		std::cout << endl << endl << endl << endl << endl << endl;
-		std::cout << "                                  -MANAGER MENU-" << endl;
-		std::cout << "                             01. ALL ACCOUNT BASIC HOLDER LIST" << endl;
-		std::cout << "                             02. ALL ACCOUNT TERMINAL SAVING DOCUMENT"<< endl;
-		std::cout << "                             03. LOCK ACCOUNT" << endl;
-		std::cout << "                             04. UNLOCK ACCOUNT" << endl;
-		std::cout << "                             05. MANAGER DETAILS CHANGE" << endl;
-		std::cout << "                             06. RECEIVE MESSAGES" << endl;
-		std::cout << "                             07. LEAVE MESSAGES" << endl;
-		std::cout << "                             08. LOGOUT" << endl;
-		std::cout << "                             09. EXIT SYSTEM" << endl;
-		std::cout << "                           Select Your Option <1-9> : ";
-		break;
-	case Type_User:
-		print_self_details(id, name);
-		std::cout << endl << endl << endl << endl;
-		std::cout << "                                   -USER MENU-" << endl;
-		std::cout << "                                01. DEPOSIT AMOUNT" << endl;
-		std::cout << "                                02. WITHDRAW AMOUNT" << endl;
-		std::cout << "                                03. BALANCE ENQUIRY" << endl;
-		std::cout << "                                04. CLOSE AN ACCOUNT" << endl;
-		std::cout << "                                05. CHANGE PASSWORD" << endl;
-		std::cout << "                                06. TRANSFER AMOUNT" << endl;
-		std::cout << "                                07. LOAN AMOUNT" << endl;
-		std::cout << "                                08. LOAN PAYMENT" << endl;	
-		std::cout << "                                09. RECEIVE MESSAGES" << endl;
-		std::cout << "                                10. LEAVE MESSAGES" << endl;
-		std::cout << "                                11. LOGOUT" << endl;
-		std::cout << "                              Select Your Option <1-11> : ";
-		break;
-	default:
-		break;
+		case Type_Manager:
+			print_self_details(0, name);
+			std::cout << endl << endl << endl << endl << endl << endl;
+			std::cout << "                                  -MANAGER MENU-" << endl;
+			std::cout << "                             01. ALL ACCOUNT BASIC HOLDER LIST" << endl;
+			std::cout << "                             02. ALL ACCOUNT TERMINAL SAVING DOCUMENT"<< endl;
+			std::cout << "                             03. LOCK ACCOUNT" << endl;
+			std::cout << "                             04. UNLOCK ACCOUNT" << endl;
+			std::cout << "                             05. MANAGER DETAILS CHANGE" << endl;
+			std::cout << "                             06. RECEIVE MESSAGES" << endl;
+			std::cout << "                             07. LEAVE MESSAGES" << endl;
+			std::cout << "                             08. LOGOUT" << endl;
+			std::cout << "                             09. EXIT SYSTEM" << endl;
+			std::cout << "                           Select Your Option <1-9> : ";
+			break;
+		case Type_User:
+			print_self_details(id, name);
+			std::cout << endl << endl << endl << endl;
+			std::cout << "                                   -USER MENU-" << endl;
+			std::cout << "                                01. DEPOSIT AMOUNT" << endl;	
+			std::cout << "                                02. WITHDRAW AMOUNT" << endl;
+			std::cout << "                                03. BALANCE ENQUIRY" << endl;
+			std::cout << "                                04. CLOSE AN ACCOUNT" << endl;
+			std::cout << "                                05. CHANGE PASSWORD" << endl;
+			std::cout << "                                06. TRANSFER AMOUNT" << endl;
+			std::cout << "                                07. LOAN AMOUNT" << endl;
+			std::cout << "                                08. LOAN PAYMENT" << endl;	
+			std::cout << "                                09. RECEIVE MESSAGES" << endl;
+			std::cout << "                                10. LEAVE MESSAGES" << endl;
+			std::cout << "                                11. LOGOUT" << endl;
+			std::cout << "                              Select Your Option <1-11> : ";
+			break;
+		default:
+			break;
 	}
+	ref = true;
+	std::thread refresh_msg(std::bind(&BankClient::print_check_message, this, type, id));
+	refresh_msg.detach();
 	return;
 }
 bool BankClient::do_menu(TypeOfAccount type, int id, int n) {
 	//True means logout
-	clear_screen();
 	if (type == Type_Manager) {
 		switch (n) {
 		case 1:
@@ -370,7 +435,12 @@ bool BankClient::do_menu(TypeOfAccount type, int id, int n) {
 		case 5:
 			manager_details_change();
 			break;
-
+		case 6:
+			receive_message(0);
+			break;
+		case 7:
+			leave_message(0);
+			break;
 		case 8:
 			return true;
 			break;
@@ -409,7 +479,10 @@ bool BankClient::do_menu(TypeOfAccount type, int id, int n) {
 			loan_payment(id);
 			break;
 		case 9:
-			chat_to_manager(id);
+			receive_message(id);
+			break;
+		case 10:
+			leave_message(id);
 			break;
 		case 11:
 			return true;
@@ -450,6 +523,8 @@ void BankClient::main_menu() {
 	int n;
 	pair<int, string> user_login_judge;
 	pair<int, string> manager_login_judge;
+	SimpleRequest req;
+	LockedReply reply;
 	clear_screen();
 	std::cout << endl << endl << endl << endl << endl << endl << endl << endl;
 	std::cout << "                                   -MAIN MENU-" << endl;
@@ -471,9 +546,8 @@ void BankClient::main_menu() {
 			music_state(true);
 			while (true) {
 				show_menu(Type_User, user_login_judge.first, user_login_judge.second);
-				std::cin >> n;
-				SimpleRequest req;
-				LockedReply reply;
+				cin >> n;
+				ref = false;
 				req.set_id(user_login_judge.first);
 				m_client.JudgeLocked(req, reply);
 				if (reply.locked() == 1) {
@@ -482,6 +556,7 @@ void BankClient::main_menu() {
 				}
 				if (do_menu(Type_User, user_login_judge.first, n))
 					break;
+				
 			}
 			music_state(false);
 		}
@@ -492,7 +567,8 @@ void BankClient::main_menu() {
 			music_state(true);
 			while (true) {
 				show_menu(Type_Manager, manager_login_judge.first, manager_login_judge.second);
-				std::cin >> n;
+				cin >> n;
+				ref = false;
 				if (do_menu(Type_Manager, manager_login_judge.first, n))
 					break;
 			}
@@ -544,7 +620,7 @@ void BankClient::new_account() {
 			std::cout << "==> Enter User-Type <O/H/N> Again : ";
 			std::cin >> type;
 		}
-		std::cout << "==> Enter Initial-Balance " << endl << "\t--< >=666 - O ; >=66666 - H ; >= 6666666 - N> : ";
+		std::cout << "==> Enter Initial-Balance " << endl << "\t--< >=500 - O ; >=50000 - H ; >= 500000 - N> : ";
 		std::cin >> balance;
 		while (balance < 0) {
 			print_Err(Err_Negative_Amount);
@@ -553,17 +629,17 @@ void BankClient::new_account() {
 		}
 		bool ok;
 		if (type == 'O')
-			if (balance >= 666)
+			if (balance >= 500)
 				ok = true;
 			else
 				ok = false;
 		else if (type == 'H')
-			if (balance >= 66666)
+			if (balance >= 50000)
 				ok = true;
 			else
 				ok = false;
 		else if (type == 'N')
-			if (balance >= 6666666)
+			if (balance >= 500000)
 				ok = true;
 			else
 				ok = false;
@@ -602,6 +678,7 @@ void BankClient::print_War(string warning) {
 	color(7);
 }
 void BankClient::deposit(int id) {
+	clear_screen();
 	std::cout << "---ACCOUNT TRANSCATION FORM---" << endl;
 	std::cout << "-DEPOSIT AMOUNT-" << endl << endl;
 	print_account_status(id);
@@ -672,6 +749,7 @@ void BankClient::saving_deposit(int id) {
 }
 
 void BankClient::withdraw(int id) {
+	clear_screen();
 	std::cout << "---ACCOUNT TRANSCATION FORM---" << endl;
 	std::cout << "-WITHDRAW AMOUNT-" << endl << endl;
 	print_account_status(id);
@@ -848,14 +926,76 @@ void BankClient::loan_payment(int id) {
 		break;
 	}
 }
-void BankClient::chat_to_manager(int id) {
+void BankClient::leave_message(int id) {
 	clear_screen();
-	std::cout << "---CHAT SYSTEM---" << endl;
-	//print_messages(id);
-	//std::thread print_message(std::bind(&BankClient::print_message, this));
-	//leave_message_to_manager(id);
+	std::cout << "---MESSAGE SYSTEM---" << endl;
+	std::cout << "-LEAVE MESSAGE-";
+	std::cout << endl << endl;
+	LeaveMessageRequest req;
+	SimpleReply reply;
+	int to_id;
+	string input_tool;
+	string message;
+	if (id) 
+		print_War("<== Enter 0 If You Want To Connect With Manager !");
+	else
+		print_greet_to_manager();
+	std::cout << endl;
+	std::cout << "==> Enter Target/Receives-ID : ";
+	std::cin >> to_id;
+	std::cout << "==> Enter Leave-Massege : ";
+	getline(cin, input_tool);
+	getline(cin, message);
+	req.set_to(to_id);
+	UserMessage* msg_obj = new UserMessage();
+	msg_obj->set_id(id);
+	msg_obj->set_msg_str(message);
+	req.set_allocated_msg(msg_obj);
+	m_client.LeaveMessage(req, reply);
+	print_Err(reply.code());
 }
+void BankClient::receive_message(int id) {
+	clear_screen();
+	std::cout << "---MESSAGE SYSTEM---" << endl;
+	std::cout << "-RECEIVE MESSAGE-";
+	std::cout << endl << endl;
+	SimpleRequest req;
+	ShowMessageReply reply;
+	SelectRequest req_;
+	SimpleReply reply_;
+	if (!id)
+		print_greet_to_manager();
+	std::cout << endl;
+	req.set_id(id);
+	m_client.ShowMessage(req, reply);
+	for (int i = 0; i < reply.msgs_size(); i++) {
+		std::cout << i + 1 << ". ";
+		color(14);
+		cout << "UTC " << reply.msgs(i).tm();
+		color(7);
+		if(reply.msgs(i).id())
+			std::cout << " - ID " << reply.msgs(i).id() << " Send : " << reply.msgs(i).msg_str() << endl;
+		else
+			std::cout << " - Manager Send : " << reply.msgs(i).msg_str() << endl;
+	}
+	if (reply.msgs_size() > 0) {
+		cout << endl;
+		pause_screen();
+		std::cout << "==> Do You Want To Clear ? < 0  Sure > : ";
+		int sure;
+		std::cin >> sure;
+		req_.set_sure(sure);
+		req_.set_id(id);
+		m_client.CleanMessage(req_, reply_);
+		print_Err(reply_.code());
+	}
+	else {
+		cout << endl;
+		cout << "Nothing." << endl;
+		pause_screen();
+	}
 
+}
 void BankClient::holder_list() {
 	clear_screen();
 	std::cout << "---HOLDER DETAILS---" << endl;
@@ -933,7 +1073,6 @@ void BankClient::lock_account() {
 	req.set_id(id);
 	m_client.LockUser(req, reply);
 	print_Err(reply.code());
-
 }
 void BankClient::unlock_account() {
 	SimpleRequest req;
@@ -941,7 +1080,7 @@ void BankClient::unlock_account() {
 	clear_screen();
 	int id;
 	std::cout << "---ACCOUNT STATE TRANSITION FORM---" << endl;
-	std::cout << "-UnlOCK ACCOUNT-" << endl << endl;
+	std::cout << "-UNlOCK ACCOUNT-" << endl << endl;
 	print_greet_to_manager();
 	std::cout << "==> Enter Target User-ID : ";
 	std::cin >> id;

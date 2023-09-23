@@ -24,7 +24,7 @@
 #include <curses.h>
 #endif
 #include <functional>
-#include "bank.pb.h"
+#include "../proto/bank.pb.h"
 
 using namespace std;
 using namespace bank;

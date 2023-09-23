@@ -92,3 +92,19 @@ Status GreeterServiceImpl::JudgeLocked(ServerContext* context, const SimpleReque
     m_server.judge_locked(*request, *reply);
     return Status::OK;
 }
+Status GreeterServiceImpl::LeaveMessage(ServerContext* context, const LeaveMessageRequest* request, SimpleReply* reply) {
+    m_server.leave_message(*request, *reply);
+    return Status::OK;
+}
+Status GreeterServiceImpl::ShowMessage(ServerContext* context, const SimpleRequest* request, ShowMessageReply* reply) {
+    m_server.receive_message(*request, *reply);
+    return Status::OK;
+}
+Status GreeterServiceImpl::CheckMessage(ServerContext* context, const SimpleRequest* request, CheckMessageReply* reply) {
+    m_server.check_message(*request, *reply);
+    return Status::OK;
+}
+Status GreeterServiceImpl::CleanMessage(ServerContext* context, const SelectRequest* request, SimpleReply* reply) {
+    m_server.clean_message(*request, *reply);
+    return Status::OK;
+}

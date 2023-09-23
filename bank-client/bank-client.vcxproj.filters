@@ -27,13 +27,13 @@
     <ClCompile Include="bank_client.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="service.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\common\Account.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\common\container.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\client\service.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +47,7 @@
     <ClInclude Include="..\proto\bank.pb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="service.h">
+    <ClInclude Include="..\common\client\service.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

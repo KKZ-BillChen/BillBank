@@ -52,6 +52,18 @@ struct AccountMsgDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT AccountMsgDefaultTypeInternal _AccountMsg_default_instance_;
+constexpr CheckMessageReply::CheckMessageReply(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : msg_size_(0){}
+struct CheckMessageReplyDefaultTypeInternal {
+  constexpr CheckMessageReplyDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~CheckMessageReplyDefaultTypeInternal() {}
+  union {
+    CheckMessageReply _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT CheckMessageReplyDefaultTypeInternal _CheckMessageReply_default_instance_;
 constexpr HelloRequest::HelloRequest(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
@@ -110,6 +122,19 @@ struct LockedReplyDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT LockedReplyDefaultTypeInternal _LockedReply_default_instance_;
+constexpr SelectRequest::SelectRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : sure_(0)
+  , id_(0){}
+struct SelectRequestDefaultTypeInternal {
+  constexpr SelectRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~SelectRequestDefaultTypeInternal() {}
+  union {
+    SelectRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT SelectRequestDefaultTypeInternal _SelectRequest_default_instance_;
 constexpr SimpleRequest::SimpleRequest(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : id_(0){}
@@ -323,8 +348,47 @@ struct AllAccountsSavingDocumentReplyDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT AllAccountsSavingDocumentReplyDefaultTypeInternal _AllAccountsSavingDocumentReply_default_instance_;
+constexpr UserMessage::UserMessage(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : msg_str_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , tm_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , id_(0){}
+struct UserMessageDefaultTypeInternal {
+  constexpr UserMessageDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~UserMessageDefaultTypeInternal() {}
+  union {
+    UserMessage _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT UserMessageDefaultTypeInternal _UserMessage_default_instance_;
+constexpr ShowMessageReply::ShowMessageReply(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : msgs_(){}
+struct ShowMessageReplyDefaultTypeInternal {
+  constexpr ShowMessageReplyDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ShowMessageReplyDefaultTypeInternal() {}
+  union {
+    ShowMessageReply _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ShowMessageReplyDefaultTypeInternal _ShowMessageReply_default_instance_;
+constexpr LeaveMessageRequest::LeaveMessageRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : msg_(nullptr)
+  , to_(0){}
+struct LeaveMessageRequestDefaultTypeInternal {
+  constexpr LeaveMessageRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~LeaveMessageRequestDefaultTypeInternal() {}
+  union {
+    LeaveMessageRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT LeaveMessageRequestDefaultTypeInternal _LeaveMessageRequest_default_instance_;
 }  // namespace bank
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_bank_2eproto[23];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_bank_2eproto[28];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_bank_2eproto[3];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_bank_2eproto = nullptr;
 
@@ -351,6 +415,12 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_bank_2eproto::offsets[] PROTOB
   PROTOBUF_FIELD_OFFSET(::bank::AccountMsg, loan_),
   PROTOBUF_FIELD_OFFSET(::bank::AccountMsg, auto_payment_),
   PROTOBUF_FIELD_OFFSET(::bank::AccountMsg, balances_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::bank::CheckMessageReply, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::bank::CheckMessageReply, msg_size_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::bank::HelloRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -379,6 +449,13 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_bank_2eproto::offsets[] PROTOB
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::bank::LockedReply, locked_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::bank::SelectRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::bank::SelectRequest, sure_),
+  PROTOBUF_FIELD_OFFSET(::bank::SelectRequest, id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::bank::SimpleRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -492,41 +569,69 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_bank_2eproto::offsets[] PROTOB
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::bank::AllAccountsSavingDocumentReply, accs_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::bank::UserMessage, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::bank::UserMessage, id_),
+  PROTOBUF_FIELD_OFFSET(::bank::UserMessage, msg_str_),
+  PROTOBUF_FIELD_OFFSET(::bank::UserMessage, tm_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::bank::ShowMessageReply, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::bank::ShowMessageReply, msgs_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::bank::LeaveMessageRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::bank::LeaveMessageRequest, msg_),
+  PROTOBUF_FIELD_OFFSET(::bank::LeaveMessageRequest, to_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::bank::SaveBalance)},
   { 8, -1, sizeof(::bank::AccountMsg)},
-  { 22, -1, sizeof(::bank::HelloRequest)},
-  { 28, -1, sizeof(::bank::HelloReply)},
-  { 34, -1, sizeof(::bank::EmptyRequest)},
-  { 39, -1, sizeof(::bank::EmptyReply)},
-  { 44, -1, sizeof(::bank::LockedReply)},
-  { 50, -1, sizeof(::bank::SimpleRequest)},
-  { 56, -1, sizeof(::bank::SimpleReply)},
-  { 62, -1, sizeof(::bank::CreateAccountRequest)},
-  { 71, -1, sizeof(::bank::CreateAccountReply)},
-  { 78, -1, sizeof(::bank::LoginRequest)},
-  { 85, -1, sizeof(::bank::LoginReply)},
-  { 93, -1, sizeof(::bank::UserDemandRequest)},
-  { 100, -1, sizeof(::bank::UserSavingDepositRequest)},
-  { 108, -1, sizeof(::bank::ShowAccountReply)},
-  { 114, -1, sizeof(::bank::UserSavingWithdrawRequest)},
-  { 121, -1, sizeof(::bank::ChangePasswordRequest)},
-  { 128, -1, sizeof(::bank::ChangeManagerRequest)},
-  { 135, -1, sizeof(::bank::UserTransferRequest)},
-  { 143, -1, sizeof(::bank::UserLoanPayRequest)},
-  { 151, -1, sizeof(::bank::AllAccountsBasicStatusReply)},
-  { 157, -1, sizeof(::bank::AllAccountsSavingDocumentReply)},
+  { 22, -1, sizeof(::bank::CheckMessageReply)},
+  { 28, -1, sizeof(::bank::HelloRequest)},
+  { 34, -1, sizeof(::bank::HelloReply)},
+  { 40, -1, sizeof(::bank::EmptyRequest)},
+  { 45, -1, sizeof(::bank::EmptyReply)},
+  { 50, -1, sizeof(::bank::LockedReply)},
+  { 56, -1, sizeof(::bank::SelectRequest)},
+  { 63, -1, sizeof(::bank::SimpleRequest)},
+  { 69, -1, sizeof(::bank::SimpleReply)},
+  { 75, -1, sizeof(::bank::CreateAccountRequest)},
+  { 84, -1, sizeof(::bank::CreateAccountReply)},
+  { 91, -1, sizeof(::bank::LoginRequest)},
+  { 98, -1, sizeof(::bank::LoginReply)},
+  { 106, -1, sizeof(::bank::UserDemandRequest)},
+  { 113, -1, sizeof(::bank::UserSavingDepositRequest)},
+  { 121, -1, sizeof(::bank::ShowAccountReply)},
+  { 127, -1, sizeof(::bank::UserSavingWithdrawRequest)},
+  { 134, -1, sizeof(::bank::ChangePasswordRequest)},
+  { 141, -1, sizeof(::bank::ChangeManagerRequest)},
+  { 148, -1, sizeof(::bank::UserTransferRequest)},
+  { 156, -1, sizeof(::bank::UserLoanPayRequest)},
+  { 164, -1, sizeof(::bank::AllAccountsBasicStatusReply)},
+  { 170, -1, sizeof(::bank::AllAccountsSavingDocumentReply)},
+  { 176, -1, sizeof(::bank::UserMessage)},
+  { 184, -1, sizeof(::bank::ShowMessageReply)},
+  { 190, -1, sizeof(::bank::LeaveMessageRequest)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_SaveBalance_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_AccountMsg_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_CheckMessageReply_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_HelloRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_HelloReply_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_EmptyRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_EmptyReply_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_LockedReply_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_SelectRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_SimpleRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_SimpleReply_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_CreateAccountRequest_default_instance_),
@@ -543,6 +648,9 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_UserLoanPayRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_AllAccountsBasicStatusReply_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_AllAccountsSavingDocumentReply_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_UserMessage_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_ShowMessageReply_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::bank::_LeaveMessageRequest_default_instance_),
 };
 
 const char descriptor_table_protodef_bank_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -553,88 +661,103 @@ const char descriptor_table_protodef_bank_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "nd_balance\030\004 \001(\001\022\020\n\010password\030\005 \001(\t\022\016\n\006lo"
   "cked\030\006 \001(\005\022\014\n\004loan\030\007 \001(\001\022\024\n\014auto_payment"
   "\030\010 \001(\001\022#\n\010balances\030\t \003(\0132\021.bank.SaveBala"
-  "nce\"\034\n\014HelloRequest\022\014\n\004name\030\001 \001(\t\"\035\n\nHel"
-  "loReply\022\017\n\007message\030\001 \001(\t\"\016\n\014EmptyRequest"
-  "\"\014\n\nEmptyReply\"\035\n\013LockedReply\022\016\n\006locked\030"
-  "\001 \001(\005\"\033\n\rSimpleRequest\022\n\n\002id\030\001 \001(\005\",\n\013Si"
-  "mpleReply\022\035\n\004code\030\001 \001(\0162\017.bank.BankError"
-  "\"Q\n\024CreateAccountRequest\022\014\n\004name\030\001 \001(\t\022\014"
-  "\n\004pswd\030\002 \001(\t\022\014\n\004type\030\003 \001(\005\022\017\n\007balance\030\004 "
-  "\001(\001\"\?\n\022CreateAccountReply\022\035\n\004code\030\001 \001(\0162"
-  "\017.bank.BankError\022\n\n\002id\030\002 \001(\005\"(\n\014LoginReq"
-  "uest\022\n\n\002id\030\001 \001(\005\022\014\n\004pswd\030\002 \001(\t\"I\n\nLoginR"
-  "eply\022\035\n\004code\030\001 \001(\0162\017.bank.BankError\022\014\n\004n"
-  "ame\030\002 \001(\t\022\016\n\006locked\030\003 \001(\005\"/\n\021UserDemandR"
-  "equest\022\n\n\002id\030\001 \001(\005\022\016\n\006amount\030\002 \001(\001\"Y\n\030Us"
-  "erSavingDepositRequest\022\n\n\002id\030\001 \001(\005\022\016\n\006am"
-  "ount\030\002 \001(\001\022!\n\004type\030\003 \001(\0162\023.bank.TypeOfSa"
-  "vings\"1\n\020ShowAccountReply\022\035\n\003acc\030\001 \001(\0132\020"
-  ".bank.AccountMsg\"7\n\031UserSavingWithdrawRe"
-  "quest\022\n\n\002id\030\001 \001(\005\022\016\n\006serial\030\002 \001(\005\"5\n\025Cha"
-  "ngePasswordRequest\022\n\n\002id\030\001 \001(\005\022\020\n\010passwo"
-  "rd\030\002 \001(\t\"2\n\024ChangeManagerRequest\022\014\n\004name"
-  "\030\001 \001(\t\022\014\n\004pswd\030\002 \001(\t\"O\n\023UserTransferRequ"
-  "est\022\023\n\013original_id\030\001 \001(\005\022\023\n\013transfer_id\030"
-  "\002 \001(\005\022\016\n\006amount\030\003 \001(\001\";\n\022UserLoanPayRequ"
-  "est\022\n\n\002id\030\001 \001(\005\022\t\n\001n\030\002 \001(\005\022\016\n\006amount\030\003 \001"
-  "(\001\"=\n\033AllAccountsBasicStatusReply\022\036\n\004acc"
-  "s\030\001 \003(\0132\020.bank.AccountMsg\"@\n\036AllAccounts"
-  "SavingDocumentReply\022\036\n\004accs\030\001 \003(\0132\020.bank"
-  ".AccountMsg*\321\003\n\tBankError\022\013\n\007Succeed\020\000\022\027"
-  "\n\023Err_Selection_Input\020\001\022\016\n\nErr_Nofile\020\002\022"
-  "\022\n\016Err_Input_Name\020\003\022\014\n\010Err_Pswd\020\004\022\"\n\036Err"
-  "_Initial_Balance_Match_Type\020\005\022\022\n\016Err_Ove"
-  "r_Draft\020\006\022\021\n\rErr_Over_Loan\020\007\022\014\n\010Err_Noid"
-  "\020\010\022\035\n\031Err_balance_loan_no_clear\020\t\022\014\n\010Err"
-  "_lock\020\n\022\027\n\023Err_Negative_Amount\020\013\022\025\n\021Err_"
-  "Manager_Login\020\014\022\024\n\020Err_already_lock\020\r\022\026\n"
-  "\022Err_already_unlock\020\016\022\025\n\021Err_Negative_Lo"
-  "an\020\017\022\032\n\026Err_seen_used_password\020\020\022\033\n\027Err_"
-  "seen_modify_details\020\021\022\017\n\013Err_Unknown\020\022\022\027"
-  "\n\023Err_Login_User_Pswd\020\023\022\016\n\nErr_NoType\020\024*"
-  "0\n\rTypeOfAccount\022\r\n\tType_User\020\000\022\020\n\014Type_"
-  "Manager\020\001*.\n\rTypeOfSavings\022\r\n\tMinutes_5\020"
-  "\000\022\016\n\nMinutes_10\020\0012\311\n\n\007Greeter\0222\n\010SayHell"
-  "o\022\022.bank.HelloRequest\032\020.bank.HelloReply\""
-  "\000\022G\n\rCreateAccount\022\032.bank.CreateAccountR"
-  "equest\032\030.bank.CreateAccountReply\"\000\0228\n\014Cl"
-  "oseAccount\022\023.bank.SimpleRequest\032\021.bank.S"
-  "impleReply\"\000\022<\n\013ShowAccount\022\023.bank.Simpl"
-  "eRequest\032\026.bank.ShowAccountReply\"\000\0223\n\tUs"
+  "nce\"%\n\021CheckMessageReply\022\020\n\010msg_size\030\001 \001"
+  "(\005\"\034\n\014HelloRequest\022\014\n\004name\030\001 \001(\t\"\035\n\nHell"
+  "oReply\022\017\n\007message\030\001 \001(\t\"\016\n\014EmptyRequest\""
+  "\014\n\nEmptyReply\"\035\n\013LockedReply\022\016\n\006locked\030\001"
+  " \001(\005\")\n\rSelectRequest\022\014\n\004sure\030\001 \001(\005\022\n\n\002i"
+  "d\030\002 \001(\005\"\033\n\rSimpleRequest\022\n\n\002id\030\001 \001(\005\",\n\013"
+  "SimpleReply\022\035\n\004code\030\001 \001(\0162\017.bank.BankErr"
+  "or\"Q\n\024CreateAccountRequest\022\014\n\004name\030\001 \001(\t"
+  "\022\014\n\004pswd\030\002 \001(\t\022\014\n\004type\030\003 \001(\005\022\017\n\007balance\030"
+  "\004 \001(\001\"\?\n\022CreateAccountReply\022\035\n\004code\030\001 \001("
+  "\0162\017.bank.BankError\022\n\n\002id\030\002 \001(\005\"(\n\014LoginR"
+  "equest\022\n\n\002id\030\001 \001(\005\022\014\n\004pswd\030\002 \001(\t\"I\n\nLogi"
+  "nReply\022\035\n\004code\030\001 \001(\0162\017.bank.BankError\022\014\n"
+  "\004name\030\002 \001(\t\022\016\n\006locked\030\003 \001(\005\"/\n\021UserDeman"
+  "dRequest\022\n\n\002id\030\001 \001(\005\022\016\n\006amount\030\002 \001(\001\"Y\n\030"
+  "UserSavingDepositRequest\022\n\n\002id\030\001 \001(\005\022\016\n\006"
+  "amount\030\002 \001(\001\022!\n\004type\030\003 \001(\0162\023.bank.TypeOf"
+  "Savings\"1\n\020ShowAccountReply\022\035\n\003acc\030\001 \001(\013"
+  "2\020.bank.AccountMsg\"7\n\031UserSavingWithdraw"
+  "Request\022\n\n\002id\030\001 \001(\005\022\016\n\006serial\030\002 \001(\005\"5\n\025C"
+  "hangePasswordRequest\022\n\n\002id\030\001 \001(\005\022\020\n\010pass"
+  "word\030\002 \001(\t\"2\n\024ChangeManagerRequest\022\014\n\004na"
+  "me\030\001 \001(\t\022\014\n\004pswd\030\002 \001(\t\"O\n\023UserTransferRe"
+  "quest\022\023\n\013original_id\030\001 \001(\005\022\023\n\013transfer_i"
+  "d\030\002 \001(\005\022\016\n\006amount\030\003 \001(\001\";\n\022UserLoanPayRe"
+  "quest\022\n\n\002id\030\001 \001(\005\022\t\n\001n\030\002 \001(\005\022\016\n\006amount\030\003"
+  " \001(\001\"=\n\033AllAccountsBasicStatusReply\022\036\n\004a"
+  "ccs\030\001 \003(\0132\020.bank.AccountMsg\"@\n\036AllAccoun"
+  "tsSavingDocumentReply\022\036\n\004accs\030\001 \003(\0132\020.ba"
+  "nk.AccountMsg\"6\n\013UserMessage\022\n\n\002id\030\001 \001(\005"
+  "\022\017\n\007msg_str\030\002 \001(\t\022\n\n\002tm\030\003 \001(\t\"3\n\020ShowMes"
+  "sageReply\022\037\n\004msgs\030\001 \003(\0132\021.bank.UserMessa"
+  "ge\"A\n\023LeaveMessageRequest\022\036\n\003msg\030\001 \001(\0132\021"
+  ".bank.UserMessage\022\n\n\002to\030\002 \001(\005*\247\004\n\tBankEr"
+  "ror\022\013\n\007Succeed\020\000\022\027\n\023Err_Selection_Input\020"
+  "\001\022\016\n\nErr_Nofile\020\002\022\022\n\016Err_Input_Name\020\003\022\014\n"
+  "\010Err_Pswd\020\004\022\"\n\036Err_Initial_Balance_Match"
+  "_Type\020\005\022\022\n\016Err_Over_Draft\020\006\022\021\n\rErr_Over_"
+  "Loan\020\007\022\014\n\010Err_Noid\020\010\022\035\n\031Err_balance_loan"
+  "_no_clear\020\t\022\014\n\010Err_lock\020\n\022\027\n\023Err_Negativ"
+  "e_Amount\020\013\022\025\n\021Err_Manager_Login\020\014\022\024\n\020Err"
+  "_already_lock\020\r\022\026\n\022Err_already_unlock\020\016\022"
+  "\025\n\021Err_Negative_Loan\020\017\022\032\n\026Err_seen_used_"
+  "password\020\020\022\033\n\027Err_seen_modify_details\020\021\022"
+  "\017\n\013Err_Unknown\020\022\022\027\n\023Err_Login_User_Pswd\020"
+  "\023\022\016\n\nErr_NoType\020\024\022\023\n\017Err_FullMessage\020\025\022\022"
+  "\n\016Err_ID_Message\020\026\022\023\n\017Err_Pswd_Length\020\027\022"
+  "\026\n\022Err_Pswd_Unmatched\020\030*0\n\rTypeOfAccount"
+  "\022\r\n\tType_User\020\000\022\020\n\014Type_Manager\020\001*.\n\rTyp"
+  "eOfSavings\022\r\n\tMinutes_5\020\000\022\016\n\nMinutes_10\020"
+  "\0012\301\014\n\007Greeter\0222\n\010SayHello\022\022.bank.HelloRe"
+  "quest\032\020.bank.HelloReply\"\000\022G\n\rCreateAccou"
+  "nt\022\032.bank.CreateAccountRequest\032\030.bank.Cr"
+  "eateAccountReply\"\000\0228\n\014CloseAccount\022\023.ban"
+  "k.SimpleRequest\032\021.bank.SimpleReply\"\000\022<\n\013"
+  "ShowAccount\022\023.bank.SimpleRequest\032\026.bank."
+  "ShowAccountReply\"\000\0223\n\tUserLogin\022\022.bank.L"
+  "oginRequest\032\020.bank.LoginReply\"\000\0226\n\014Manag"
   "erLogin\022\022.bank.LoginRequest\032\020.bank.Login"
-  "Reply\"\000\0226\n\014ManagerLogin\022\022.bank.LoginRequ"
-  "est\032\020.bank.LoginReply\"\000\022B\n\016ChangePasswor"
-  "d\022\033.bank.ChangePasswordRequest\032\021.bank.Si"
-  "mpleReply\"\000\022A\n\021UserDemandDeposit\022\027.bank."
-  "UserDemandRequest\032\021.bank.SimpleReply\"\000\022H"
-  "\n\021UserSavingDeposit\022\036.bank.UserSavingDep"
-  "ositRequest\032\021.bank.SimpleReply\"\000\022B\n\022User"
-  "DemandWithdraw\022\027.bank.UserDemandRequest\032"
-  "\021.bank.SimpleReply\"\000\022J\n\022UserSavingWithdr"
-  "aw\022\037.bank.UserSavingWithdrawRequest\032\021.ba"
-  "nk.SimpleReply\"\000\022>\n\014UserTransfer\022\031.bank."
-  "UserTransferRequest\032\021.bank.SimpleReply\"\000"
-  "\0228\n\010UserLoan\022\027.bank.UserDemandRequest\032\021."
-  "bank.SimpleReply\"\000\022<\n\013UserLoanPay\022\030.bank"
-  ".UserLoanPayRequest\032\021.bank.SimpleReply\"\000"
-  "\0224\n\010LockUser\022\023.bank.SimpleRequest\032\021.bank"
-  ".SimpleReply\"\000\0226\n\nUnlockUser\022\023.bank.Simp"
-  "leRequest\032\021.bank.SimpleReply\"\000\022Q\n\026AllAcc"
-  "ountsBasicStatus\022\022.bank.EmptyRequest\032!.b"
-  "ank.AllAccountsBasicStatusReply\"\000\022W\n\031All"
-  "AccountsSavingDocument\022\022.bank.EmptyReque"
-  "st\032$.bank.AllAccountsSavingDocumentReply"
-  "\"\000\022@\n\rChangeManager\022\032.bank.ChangeManager"
-  "Request\032\021.bank.SimpleReply\"\000\022.\n\004Exit\022\022.b"
-  "ank.EmptyRequest\032\020.bank.EmptyReply\"\000\0227\n\013"
-  "JudgeLocked\022\023.bank.SimpleRequest\032\021.bank."
-  "LockedReply\"\000B6\n\033io.grpc.examples.hellow"
-  "orldB\017HelloWorldProtoP\001\242\002\003HLWb\006proto3"
+  "Reply\"\000\022B\n\016ChangePassword\022\033.bank.ChangeP"
+  "asswordRequest\032\021.bank.SimpleReply\"\000\022A\n\021U"
+  "serDemandDeposit\022\027.bank.UserDemandReques"
+  "t\032\021.bank.SimpleReply\"\000\022H\n\021UserSavingDepo"
+  "sit\022\036.bank.UserSavingDepositRequest\032\021.ba"
+  "nk.SimpleReply\"\000\022B\n\022UserDemandWithdraw\022\027"
+  ".bank.UserDemandRequest\032\021.bank.SimpleRep"
+  "ly\"\000\022J\n\022UserSavingWithdraw\022\037.bank.UserSa"
+  "vingWithdrawRequest\032\021.bank.SimpleReply\"\000"
+  "\022>\n\014UserTransfer\022\031.bank.UserTransferRequ"
+  "est\032\021.bank.SimpleReply\"\000\0228\n\010UserLoan\022\027.b"
+  "ank.UserDemandRequest\032\021.bank.SimpleReply"
+  "\"\000\022<\n\013UserLoanPay\022\030.bank.UserLoanPayRequ"
+  "est\032\021.bank.SimpleReply\"\000\0224\n\010LockUser\022\023.b"
+  "ank.SimpleRequest\032\021.bank.SimpleReply\"\000\0226"
+  "\n\nUnlockUser\022\023.bank.SimpleRequest\032\021.bank"
+  ".SimpleReply\"\000\022Q\n\026AllAccountsBasicStatus"
+  "\022\022.bank.EmptyRequest\032!.bank.AllAccountsB"
+  "asicStatusReply\"\000\022W\n\031AllAccountsSavingDo"
+  "cument\022\022.bank.EmptyRequest\032$.bank.AllAcc"
+  "ountsSavingDocumentReply\"\000\022@\n\rChangeMana"
+  "ger\022\032.bank.ChangeManagerRequest\032\021.bank.S"
+  "impleReply\"\000\022.\n\004Exit\022\022.bank.EmptyRequest"
+  "\032\020.bank.EmptyReply\"\000\0227\n\013JudgeLocked\022\023.ba"
+  "nk.SimpleRequest\032\021.bank.LockedReply\"\000\022>\n"
+  "\014LeaveMessage\022\031.bank.LeaveMessageRequest"
+  "\032\021.bank.SimpleReply\"\000\022<\n\013ShowMessage\022\023.b"
+  "ank.SimpleRequest\032\026.bank.ShowMessageRepl"
+  "y\"\000\022>\n\014CheckMessage\022\023.bank.SimpleRequest"
+  "\032\027.bank.CheckMessageReply\"\000\0228\n\014CleanMess"
+  "age\022\023.bank.SelectRequest\032\021.bank.SimpleRe"
+  "ply\"\000B6\n\033io.grpc.examples.helloworldB\017He"
+  "lloWorldProtoP\001\242\002\003HLWb\006proto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_bank_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_bank_2eproto = {
-  false, false, 3357, descriptor_table_protodef_bank_2eproto, "bank.proto", 
-  &descriptor_table_bank_2eproto_once, nullptr, 0, 23,
+  false, false, 3949, descriptor_table_protodef_bank_2eproto, "bank.proto", 
+  &descriptor_table_bank_2eproto_once, nullptr, 0, 28,
   schemas, file_default_instances, TableStruct_bank_2eproto::offsets,
   file_level_metadata_bank_2eproto, file_level_enum_descriptors_bank_2eproto, file_level_service_descriptors_bank_2eproto,
 };
@@ -674,6 +797,10 @@ bool BankError_IsValid(int value) {
     case 18:
     case 19:
     case 20:
+    case 21:
+    case 22:
+    case 23:
+    case 24:
       return true;
     default:
       return false;
@@ -1384,6 +1511,195 @@ void AccountMsg::InternalSwap(AccountMsg* other) {
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata AccountMsg::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+class CheckMessageReply::_Internal {
+ public:
+};
+
+CheckMessageReply::CheckMessageReply(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:bank.CheckMessageReply)
+}
+CheckMessageReply::CheckMessageReply(const CheckMessageReply& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  msg_size_ = from.msg_size_;
+  // @@protoc_insertion_point(copy_constructor:bank.CheckMessageReply)
+}
+
+void CheckMessageReply::SharedCtor() {
+msg_size_ = 0;
+}
+
+CheckMessageReply::~CheckMessageReply() {
+  // @@protoc_insertion_point(destructor:bank.CheckMessageReply)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void CheckMessageReply::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+}
+
+void CheckMessageReply::ArenaDtor(void* object) {
+  CheckMessageReply* _this = reinterpret_cast< CheckMessageReply* >(object);
+  (void)_this;
+}
+void CheckMessageReply::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void CheckMessageReply::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void CheckMessageReply::Clear() {
+// @@protoc_insertion_point(message_clear_start:bank.CheckMessageReply)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  msg_size_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* CheckMessageReply::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // int32 msg_size = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          msg_size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* CheckMessageReply::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:bank.CheckMessageReply)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 msg_size = 1;
+  if (this->msg_size() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_msg_size(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:bank.CheckMessageReply)
+  return target;
+}
+
+size_t CheckMessageReply::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:bank.CheckMessageReply)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int32 msg_size = 1;
+  if (this->msg_size() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_msg_size());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void CheckMessageReply::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:bank.CheckMessageReply)
+  GOOGLE_DCHECK_NE(&from, this);
+  const CheckMessageReply* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<CheckMessageReply>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:bank.CheckMessageReply)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:bank.CheckMessageReply)
+    MergeFrom(*source);
+  }
+}
+
+void CheckMessageReply::MergeFrom(const CheckMessageReply& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:bank.CheckMessageReply)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.msg_size() != 0) {
+    _internal_set_msg_size(from._internal_msg_size());
+  }
+}
+
+void CheckMessageReply::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:bank.CheckMessageReply)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void CheckMessageReply::CopyFrom(const CheckMessageReply& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:bank.CheckMessageReply)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool CheckMessageReply::IsInitialized() const {
+  return true;
+}
+
+void CheckMessageReply::InternalSwap(CheckMessageReply* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  swap(msg_size_, other->msg_size_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata CheckMessageReply::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -2287,6 +2603,230 @@ void LockedReply::InternalSwap(LockedReply* other) {
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata LockedReply::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+class SelectRequest::_Internal {
+ public:
+};
+
+SelectRequest::SelectRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:bank.SelectRequest)
+}
+SelectRequest::SelectRequest(const SelectRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&sure_, &from.sure_,
+    static_cast<size_t>(reinterpret_cast<char*>(&id_) -
+    reinterpret_cast<char*>(&sure_)) + sizeof(id_));
+  // @@protoc_insertion_point(copy_constructor:bank.SelectRequest)
+}
+
+void SelectRequest::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&sure_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&id_) -
+    reinterpret_cast<char*>(&sure_)) + sizeof(id_));
+}
+
+SelectRequest::~SelectRequest() {
+  // @@protoc_insertion_point(destructor:bank.SelectRequest)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void SelectRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+}
+
+void SelectRequest::ArenaDtor(void* object) {
+  SelectRequest* _this = reinterpret_cast< SelectRequest* >(object);
+  (void)_this;
+}
+void SelectRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void SelectRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void SelectRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:bank.SelectRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&sure_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&id_) -
+      reinterpret_cast<char*>(&sure_)) + sizeof(id_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* SelectRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // int32 sure = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          sure_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* SelectRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:bank.SelectRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 sure = 1;
+  if (this->sure() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_sure(), target);
+  }
+
+  // int32 id = 2;
+  if (this->id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:bank.SelectRequest)
+  return target;
+}
+
+size_t SelectRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:bank.SelectRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int32 sure = 1;
+  if (this->sure() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_sure());
+  }
+
+  // int32 id = 2;
+  if (this->id() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void SelectRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:bank.SelectRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const SelectRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<SelectRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:bank.SelectRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:bank.SelectRequest)
+    MergeFrom(*source);
+  }
+}
+
+void SelectRequest::MergeFrom(const SelectRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:bank.SelectRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.sure() != 0) {
+    _internal_set_sure(from._internal_sure());
+  }
+  if (from.id() != 0) {
+    _internal_set_id(from._internal_id());
+  }
+}
+
+void SelectRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:bank.SelectRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void SelectRequest::CopyFrom(const SelectRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:bank.SelectRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SelectRequest::IsInitialized() const {
+  return true;
+}
+
+void SelectRequest::InternalSwap(SelectRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SelectRequest, id_)
+      + sizeof(SelectRequest::id_)
+      - PROTOBUF_FIELD_OFFSET(SelectRequest, sure_)>(
+          reinterpret_cast<char*>(&sure_),
+          reinterpret_cast<char*>(&other->sure_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata SelectRequest::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -5922,6 +6462,702 @@ void AllAccountsSavingDocumentReply::InternalSwap(AllAccountsSavingDocumentReply
 }
 
 
+// ===================================================================
+
+class UserMessage::_Internal {
+ public:
+};
+
+UserMessage::UserMessage(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:bank.UserMessage)
+}
+UserMessage::UserMessage(const UserMessage& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  msg_str_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_msg_str().empty()) {
+    msg_str_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_msg_str(), 
+      GetArena());
+  }
+  tm_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_tm().empty()) {
+    tm_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_tm(), 
+      GetArena());
+  }
+  id_ = from.id_;
+  // @@protoc_insertion_point(copy_constructor:bank.UserMessage)
+}
+
+void UserMessage::SharedCtor() {
+msg_str_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+tm_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+id_ = 0;
+}
+
+UserMessage::~UserMessage() {
+  // @@protoc_insertion_point(destructor:bank.UserMessage)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void UserMessage::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  msg_str_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  tm_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void UserMessage::ArenaDtor(void* object) {
+  UserMessage* _this = reinterpret_cast< UserMessage* >(object);
+  (void)_this;
+}
+void UserMessage::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void UserMessage::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void UserMessage::Clear() {
+// @@protoc_insertion_point(message_clear_start:bank.UserMessage)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  msg_str_.ClearToEmpty();
+  tm_.ClearToEmpty();
+  id_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserMessage::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // int32 id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string msg_str = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_msg_str();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "bank.UserMessage.msg_str"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string tm = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_tm();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "bank.UserMessage.tm"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* UserMessage::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:bank.UserMessage)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 id = 1;
+  if (this->id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_id(), target);
+  }
+
+  // string msg_str = 2;
+  if (this->msg_str().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_msg_str().data(), static_cast<int>(this->_internal_msg_str().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "bank.UserMessage.msg_str");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_msg_str(), target);
+  }
+
+  // string tm = 3;
+  if (this->tm().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_tm().data(), static_cast<int>(this->_internal_tm().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "bank.UserMessage.tm");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_tm(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:bank.UserMessage)
+  return target;
+}
+
+size_t UserMessage::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:bank.UserMessage)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string msg_str = 2;
+  if (this->msg_str().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_msg_str());
+  }
+
+  // string tm = 3;
+  if (this->tm().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_tm());
+  }
+
+  // int32 id = 1;
+  if (this->id() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void UserMessage::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:bank.UserMessage)
+  GOOGLE_DCHECK_NE(&from, this);
+  const UserMessage* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<UserMessage>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:bank.UserMessage)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:bank.UserMessage)
+    MergeFrom(*source);
+  }
+}
+
+void UserMessage::MergeFrom(const UserMessage& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:bank.UserMessage)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.msg_str().size() > 0) {
+    _internal_set_msg_str(from._internal_msg_str());
+  }
+  if (from.tm().size() > 0) {
+    _internal_set_tm(from._internal_tm());
+  }
+  if (from.id() != 0) {
+    _internal_set_id(from._internal_id());
+  }
+}
+
+void UserMessage::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:bank.UserMessage)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void UserMessage::CopyFrom(const UserMessage& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:bank.UserMessage)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserMessage::IsInitialized() const {
+  return true;
+}
+
+void UserMessage::InternalSwap(UserMessage* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  msg_str_.Swap(&other->msg_str_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  tm_.Swap(&other->tm_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  swap(id_, other->id_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserMessage::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+class ShowMessageReply::_Internal {
+ public:
+};
+
+ShowMessageReply::ShowMessageReply(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  msgs_(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:bank.ShowMessageReply)
+}
+ShowMessageReply::ShowMessageReply(const ShowMessageReply& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      msgs_(from.msgs_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:bank.ShowMessageReply)
+}
+
+void ShowMessageReply::SharedCtor() {
+}
+
+ShowMessageReply::~ShowMessageReply() {
+  // @@protoc_insertion_point(destructor:bank.ShowMessageReply)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void ShowMessageReply::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+}
+
+void ShowMessageReply::ArenaDtor(void* object) {
+  ShowMessageReply* _this = reinterpret_cast< ShowMessageReply* >(object);
+  (void)_this;
+}
+void ShowMessageReply::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void ShowMessageReply::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ShowMessageReply::Clear() {
+// @@protoc_insertion_point(message_clear_start:bank.ShowMessageReply)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  msgs_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ShowMessageReply::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // repeated .bank.UserMessage msgs = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_msgs(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ShowMessageReply::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:bank.ShowMessageReply)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .bank.UserMessage msgs = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_msgs_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, this->_internal_msgs(i), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:bank.ShowMessageReply)
+  return target;
+}
+
+size_t ShowMessageReply::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:bank.ShowMessageReply)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .bank.UserMessage msgs = 1;
+  total_size += 1UL * this->_internal_msgs_size();
+  for (const auto& msg : this->msgs_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ShowMessageReply::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:bank.ShowMessageReply)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ShowMessageReply* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ShowMessageReply>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:bank.ShowMessageReply)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:bank.ShowMessageReply)
+    MergeFrom(*source);
+  }
+}
+
+void ShowMessageReply::MergeFrom(const ShowMessageReply& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:bank.ShowMessageReply)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  msgs_.MergeFrom(from.msgs_);
+}
+
+void ShowMessageReply::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:bank.ShowMessageReply)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ShowMessageReply::CopyFrom(const ShowMessageReply& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:bank.ShowMessageReply)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ShowMessageReply::IsInitialized() const {
+  return true;
+}
+
+void ShowMessageReply::InternalSwap(ShowMessageReply* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  msgs_.InternalSwap(&other->msgs_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ShowMessageReply::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+class LeaveMessageRequest::_Internal {
+ public:
+  static const ::bank::UserMessage& msg(const LeaveMessageRequest* msg);
+};
+
+const ::bank::UserMessage&
+LeaveMessageRequest::_Internal::msg(const LeaveMessageRequest* msg) {
+  return *msg->msg_;
+}
+LeaveMessageRequest::LeaveMessageRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:bank.LeaveMessageRequest)
+}
+LeaveMessageRequest::LeaveMessageRequest(const LeaveMessageRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_msg()) {
+    msg_ = new ::bank::UserMessage(*from.msg_);
+  } else {
+    msg_ = nullptr;
+  }
+  to_ = from.to_;
+  // @@protoc_insertion_point(copy_constructor:bank.LeaveMessageRequest)
+}
+
+void LeaveMessageRequest::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&msg_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&to_) -
+    reinterpret_cast<char*>(&msg_)) + sizeof(to_));
+}
+
+LeaveMessageRequest::~LeaveMessageRequest() {
+  // @@protoc_insertion_point(destructor:bank.LeaveMessageRequest)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void LeaveMessageRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  if (this != internal_default_instance()) delete msg_;
+}
+
+void LeaveMessageRequest::ArenaDtor(void* object) {
+  LeaveMessageRequest* _this = reinterpret_cast< LeaveMessageRequest* >(object);
+  (void)_this;
+}
+void LeaveMessageRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void LeaveMessageRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void LeaveMessageRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:bank.LeaveMessageRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArena() == nullptr && msg_ != nullptr) {
+    delete msg_;
+  }
+  msg_ = nullptr;
+  to_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* LeaveMessageRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .bank.UserMessage msg = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_msg(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 to = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          to_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* LeaveMessageRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:bank.LeaveMessageRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .bank.UserMessage msg = 1;
+  if (this->has_msg()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::msg(this), target, stream);
+  }
+
+  // int32 to = 2;
+  if (this->to() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_to(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:bank.LeaveMessageRequest)
+  return target;
+}
+
+size_t LeaveMessageRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:bank.LeaveMessageRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .bank.UserMessage msg = 1;
+  if (this->has_msg()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *msg_);
+  }
+
+  // int32 to = 2;
+  if (this->to() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_to());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void LeaveMessageRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:bank.LeaveMessageRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const LeaveMessageRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<LeaveMessageRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:bank.LeaveMessageRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:bank.LeaveMessageRequest)
+    MergeFrom(*source);
+  }
+}
+
+void LeaveMessageRequest::MergeFrom(const LeaveMessageRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:bank.LeaveMessageRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_msg()) {
+    _internal_mutable_msg()->::bank::UserMessage::MergeFrom(from._internal_msg());
+  }
+  if (from.to() != 0) {
+    _internal_set_to(from._internal_to());
+  }
+}
+
+void LeaveMessageRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:bank.LeaveMessageRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void LeaveMessageRequest::CopyFrom(const LeaveMessageRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:bank.LeaveMessageRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LeaveMessageRequest::IsInitialized() const {
+  return true;
+}
+
+void LeaveMessageRequest::InternalSwap(LeaveMessageRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(LeaveMessageRequest, to_)
+      + sizeof(LeaveMessageRequest::to_)
+      - PROTOBUF_FIELD_OFFSET(LeaveMessageRequest, msg_)>(
+          reinterpret_cast<char*>(&msg_),
+          reinterpret_cast<char*>(&other->msg_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata LeaveMessageRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace bank
 PROTOBUF_NAMESPACE_OPEN
@@ -5930,6 +7166,9 @@ template<> PROTOBUF_NOINLINE ::bank::SaveBalance* Arena::CreateMaybeMessage< ::b
 }
 template<> PROTOBUF_NOINLINE ::bank::AccountMsg* Arena::CreateMaybeMessage< ::bank::AccountMsg >(Arena* arena) {
   return Arena::CreateMessageInternal< ::bank::AccountMsg >(arena);
+}
+template<> PROTOBUF_NOINLINE ::bank::CheckMessageReply* Arena::CreateMaybeMessage< ::bank::CheckMessageReply >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::bank::CheckMessageReply >(arena);
 }
 template<> PROTOBUF_NOINLINE ::bank::HelloRequest* Arena::CreateMaybeMessage< ::bank::HelloRequest >(Arena* arena) {
   return Arena::CreateMessageInternal< ::bank::HelloRequest >(arena);
@@ -5945,6 +7184,9 @@ template<> PROTOBUF_NOINLINE ::bank::EmptyReply* Arena::CreateMaybeMessage< ::ba
 }
 template<> PROTOBUF_NOINLINE ::bank::LockedReply* Arena::CreateMaybeMessage< ::bank::LockedReply >(Arena* arena) {
   return Arena::CreateMessageInternal< ::bank::LockedReply >(arena);
+}
+template<> PROTOBUF_NOINLINE ::bank::SelectRequest* Arena::CreateMaybeMessage< ::bank::SelectRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::bank::SelectRequest >(arena);
 }
 template<> PROTOBUF_NOINLINE ::bank::SimpleRequest* Arena::CreateMaybeMessage< ::bank::SimpleRequest >(Arena* arena) {
   return Arena::CreateMessageInternal< ::bank::SimpleRequest >(arena);
@@ -5993,6 +7235,15 @@ template<> PROTOBUF_NOINLINE ::bank::AllAccountsBasicStatusReply* Arena::CreateM
 }
 template<> PROTOBUF_NOINLINE ::bank::AllAccountsSavingDocumentReply* Arena::CreateMaybeMessage< ::bank::AllAccountsSavingDocumentReply >(Arena* arena) {
   return Arena::CreateMessageInternal< ::bank::AllAccountsSavingDocumentReply >(arena);
+}
+template<> PROTOBUF_NOINLINE ::bank::UserMessage* Arena::CreateMaybeMessage< ::bank::UserMessage >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::bank::UserMessage >(arena);
+}
+template<> PROTOBUF_NOINLINE ::bank::ShowMessageReply* Arena::CreateMaybeMessage< ::bank::ShowMessageReply >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::bank::ShowMessageReply >(arena);
+}
+template<> PROTOBUF_NOINLINE ::bank::LeaveMessageRequest* Arena::CreateMaybeMessage< ::bank::LeaveMessageRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::bank::LeaveMessageRequest >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

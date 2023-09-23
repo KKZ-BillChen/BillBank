@@ -2,12 +2,14 @@ c:\home\grpc-bank\bank-server\x64\debug\vc142.pdb
 c:\home\grpc-bank\bank-server\x64\debug\vc142.idb
 c:\home\grpc-bank\bank-server\x64\debug\service.obj
 c:\home\grpc-bank\bank-server\x64\debug\main.obj
-c:\home\grpc-bank\bank-server\x64\debug\db.obj
 c:\home\grpc-bank\bank-server\x64\debug\bank_server.obj
+c:\home\grpc-bank\bank-server\x64\debug\db.obj
 c:\home\grpc-bank\bank-server\x64\debug\bank.pb.obj
 c:\home\grpc-bank\bank-server\x64\debug\bank.grpc.pb.obj
 c:\home\grpc-bank\bank-server\x64\debug\container.obj
 c:\home\grpc-bank\bank-server\x64\debug\account.obj
+c:\home\grpc-bank\bank-server\x64\debug\bank-server.ilk
+c:\home\grpc-bank\x64\debug\bank-server.pdb
 c:\home\grpc-bank\x64\debug\bank-server.exe
 c:\home\grpc-bank\bank-server\x64\debug\bank-server.tlog\cl.command.1.tlog
 c:\home\grpc-bank\bank-server\x64\debug\bank-server.tlog\cl.read.1.tlog

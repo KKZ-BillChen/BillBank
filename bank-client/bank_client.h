@@ -3,7 +3,7 @@
 #include "bank.pb.h"
 #include "container.h"
 #include "Account.h"
-#include "service.h"
+#include "..\common\client\service.h"
 using bank::BankError;
 using bank::TypeOfAccount;
 
@@ -11,8 +11,10 @@ using myClient = GreeterClient;
 
 struct BankClient {
 	GreeterClient& m_client;
+	bool ref;
 	BankClient(GreeterClient& client);
 	void print_t();
+	pair<int, int> GetXY();
 	wstring utf8ToUtf16(const std::string& utf8Str);
 	void music_state(bool flag);
 	void print_manager_details(string name);
@@ -29,7 +31,7 @@ struct BankClient {
 	void print_self_details(int id, string name);
 	void print_time(string time);
 	void start();
-
+	void print_check_message(TypeOfAccount type, int id);
 	
 
 	void show_menu(TypeOfAccount type, int id, string name);
@@ -49,9 +51,8 @@ struct BankClient {
 	bool close_account(int id);
 	void password_change(int id);
 	void amount_transfer(int id);
-	void chat_to_manager(int id);
-		//void print_messages(int id);
-		//void leave_message_to_manager(int id);
+	void leave_message(int id);
+	void receive_message(int id);
 	void loan_amount(int id);
 	void loan_payment(int id);
 

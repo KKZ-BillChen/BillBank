@@ -222,6 +222,38 @@ class Greeter final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::LockedReply>> PrepareAsyncJudgeLocked(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::LockedReply>>(PrepareAsyncJudgeLockedRaw(context, request, cq));
     }
+    // Leave Message
+    virtual ::grpc::Status LeaveMessage(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest& request, ::bank::SimpleReply* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::SimpleReply>> AsyncLeaveMessage(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::SimpleReply>>(AsyncLeaveMessageRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::SimpleReply>> PrepareAsyncLeaveMessage(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::SimpleReply>>(PrepareAsyncLeaveMessageRaw(context, request, cq));
+    }
+    // Show Message
+    virtual ::grpc::Status ShowMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::bank::ShowMessageReply* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::ShowMessageReply>> AsyncShowMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::ShowMessageReply>>(AsyncShowMessageRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::ShowMessageReply>> PrepareAsyncShowMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::ShowMessageReply>>(PrepareAsyncShowMessageRaw(context, request, cq));
+    }
+    // Check New Or Full
+    virtual ::grpc::Status CheckMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::bank::CheckMessageReply* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::CheckMessageReply>> AsyncCheckMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::CheckMessageReply>>(AsyncCheckMessageRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::CheckMessageReply>> PrepareAsyncCheckMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::CheckMessageReply>>(PrepareAsyncCheckMessageRaw(context, request, cq));
+    }
+    // Clean Message
+    virtual ::grpc::Status CleanMessage(::grpc::ClientContext* context, const ::bank::SelectRequest& request, ::bank::SimpleReply* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::SimpleReply>> AsyncCleanMessage(::grpc::ClientContext* context, const ::bank::SelectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::SimpleReply>>(AsyncCleanMessageRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::SimpleReply>> PrepareAsyncCleanMessage(::grpc::ClientContext* context, const ::bank::SelectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::bank::SimpleReply>>(PrepareAsyncCleanMessageRaw(context, request, cq));
+    }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
@@ -374,6 +406,34 @@ class Greeter final {
       #else
       virtual void JudgeLocked(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::LockedReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
+      // Leave Message
+      virtual void LeaveMessage(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest* request, ::bank::SimpleReply* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void LeaveMessage(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest* request, ::bank::SimpleReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void LeaveMessage(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest* request, ::bank::SimpleReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // Show Message
+      virtual void ShowMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::ShowMessageReply* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void ShowMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::ShowMessageReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void ShowMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::ShowMessageReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // Check New Or Full
+      virtual void CheckMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::CheckMessageReply* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void CheckMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::CheckMessageReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void CheckMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::CheckMessageReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // Clean Message
+      virtual void CleanMessage(::grpc::ClientContext* context, const ::bank::SelectRequest* request, ::bank::SimpleReply* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void CleanMessage(::grpc::ClientContext* context, const ::bank::SelectRequest* request, ::bank::SimpleReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void CleanMessage(::grpc::ClientContext* context, const ::bank::SelectRequest* request, ::bank::SimpleReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     typedef class experimental_async_interface async_interface;
@@ -425,6 +485,14 @@ class Greeter final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::bank::EmptyReply>* PrepareAsyncExitRaw(::grpc::ClientContext* context, const ::bank::EmptyRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::bank::LockedReply>* AsyncJudgeLockedRaw(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::bank::LockedReply>* PrepareAsyncJudgeLockedRaw(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::bank::SimpleReply>* AsyncLeaveMessageRaw(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::bank::SimpleReply>* PrepareAsyncLeaveMessageRaw(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::bank::ShowMessageReply>* AsyncShowMessageRaw(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::bank::ShowMessageReply>* PrepareAsyncShowMessageRaw(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::bank::CheckMessageReply>* AsyncCheckMessageRaw(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::bank::CheckMessageReply>* PrepareAsyncCheckMessageRaw(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::bank::SimpleReply>* AsyncCleanMessageRaw(::grpc::ClientContext* context, const ::bank::SelectRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::bank::SimpleReply>* PrepareAsyncCleanMessageRaw(::grpc::ClientContext* context, const ::bank::SelectRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -576,6 +644,34 @@ class Greeter final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::LockedReply>> PrepareAsyncJudgeLocked(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::LockedReply>>(PrepareAsyncJudgeLockedRaw(context, request, cq));
     }
+    ::grpc::Status LeaveMessage(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest& request, ::bank::SimpleReply* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::SimpleReply>> AsyncLeaveMessage(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::SimpleReply>>(AsyncLeaveMessageRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::SimpleReply>> PrepareAsyncLeaveMessage(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::SimpleReply>>(PrepareAsyncLeaveMessageRaw(context, request, cq));
+    }
+    ::grpc::Status ShowMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::bank::ShowMessageReply* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::ShowMessageReply>> AsyncShowMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::ShowMessageReply>>(AsyncShowMessageRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::ShowMessageReply>> PrepareAsyncShowMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::ShowMessageReply>>(PrepareAsyncShowMessageRaw(context, request, cq));
+    }
+    ::grpc::Status CheckMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::bank::CheckMessageReply* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::CheckMessageReply>> AsyncCheckMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::CheckMessageReply>>(AsyncCheckMessageRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::CheckMessageReply>> PrepareAsyncCheckMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::CheckMessageReply>>(PrepareAsyncCheckMessageRaw(context, request, cq));
+    }
+    ::grpc::Status CleanMessage(::grpc::ClientContext* context, const ::bank::SelectRequest& request, ::bank::SimpleReply* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::SimpleReply>> AsyncCleanMessage(::grpc::ClientContext* context, const ::bank::SelectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::SimpleReply>>(AsyncCleanMessageRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::SimpleReply>> PrepareAsyncCleanMessage(::grpc::ClientContext* context, const ::bank::SelectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::bank::SimpleReply>>(PrepareAsyncCleanMessageRaw(context, request, cq));
+    }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
@@ -705,6 +801,30 @@ class Greeter final {
       #else
       void JudgeLocked(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::LockedReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
+      void LeaveMessage(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest* request, ::bank::SimpleReply* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void LeaveMessage(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest* request, ::bank::SimpleReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void LeaveMessage(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest* request, ::bank::SimpleReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void ShowMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::ShowMessageReply* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void ShowMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::ShowMessageReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void ShowMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::ShowMessageReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void CheckMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::CheckMessageReply* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void CheckMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::CheckMessageReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void CheckMessage(::grpc::ClientContext* context, const ::bank::SimpleRequest* request, ::bank::CheckMessageReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void CleanMessage(::grpc::ClientContext* context, const ::bank::SelectRequest* request, ::bank::SimpleReply* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void CleanMessage(::grpc::ClientContext* context, const ::bank::SelectRequest* request, ::bank::SimpleReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void CleanMessage(::grpc::ClientContext* context, const ::bank::SelectRequest* request, ::bank::SimpleReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
      private:
       friend class Stub;
       explicit experimental_async(Stub* stub): stub_(stub) { }
@@ -758,6 +878,14 @@ class Greeter final {
     ::grpc::ClientAsyncResponseReader< ::bank::EmptyReply>* PrepareAsyncExitRaw(::grpc::ClientContext* context, const ::bank::EmptyRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::bank::LockedReply>* AsyncJudgeLockedRaw(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::bank::LockedReply>* PrepareAsyncJudgeLockedRaw(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::bank::SimpleReply>* AsyncLeaveMessageRaw(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::bank::SimpleReply>* PrepareAsyncLeaveMessageRaw(::grpc::ClientContext* context, const ::bank::LeaveMessageRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::bank::ShowMessageReply>* AsyncShowMessageRaw(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::bank::ShowMessageReply>* PrepareAsyncShowMessageRaw(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::bank::CheckMessageReply>* AsyncCheckMessageRaw(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::bank::CheckMessageReply>* PrepareAsyncCheckMessageRaw(::grpc::ClientContext* context, const ::bank::SimpleRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::bank::SimpleReply>* AsyncCleanMessageRaw(::grpc::ClientContext* context, const ::bank::SelectRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::bank::SimpleReply>* PrepareAsyncCleanMessageRaw(::grpc::ClientContext* context, const ::bank::SelectRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_SayHello_;
     const ::grpc::internal::RpcMethod rpcmethod_CreateAccount_;
     const ::grpc::internal::RpcMethod rpcmethod_CloseAccount_;
@@ -779,6 +907,10 @@ class Greeter final {
     const ::grpc::internal::RpcMethod rpcmethod_ChangeManager_;
     const ::grpc::internal::RpcMethod rpcmethod_Exit_;
     const ::grpc::internal::RpcMethod rpcmethod_JudgeLocked_;
+    const ::grpc::internal::RpcMethod rpcmethod_LeaveMessage_;
+    const ::grpc::internal::RpcMethod rpcmethod_ShowMessage_;
+    const ::grpc::internal::RpcMethod rpcmethod_CheckMessage_;
+    const ::grpc::internal::RpcMethod rpcmethod_CleanMessage_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -830,6 +962,14 @@ class Greeter final {
     virtual ::grpc::Status Exit(::grpc::ServerContext* context, const ::bank::EmptyRequest* request, ::bank::EmptyReply* response);
     // Judge Locked
     virtual ::grpc::Status JudgeLocked(::grpc::ServerContext* context, const ::bank::SimpleRequest* request, ::bank::LockedReply* response);
+    // Leave Message
+    virtual ::grpc::Status LeaveMessage(::grpc::ServerContext* context, const ::bank::LeaveMessageRequest* request, ::bank::SimpleReply* response);
+    // Show Message
+    virtual ::grpc::Status ShowMessage(::grpc::ServerContext* context, const ::bank::SimpleRequest* request, ::bank::ShowMessageReply* response);
+    // Check New Or Full
+    virtual ::grpc::Status CheckMessage(::grpc::ServerContext* context, const ::bank::SimpleRequest* request, ::bank::CheckMessageReply* response);
+    // Clean Message
+    virtual ::grpc::Status CleanMessage(::grpc::ServerContext* context, const ::bank::SelectRequest* request, ::bank::SimpleReply* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_SayHello : public BaseClass {
@@ -1251,7 +1391,87 @@ class Greeter final {
       ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_SayHello<WithAsyncMethod_CreateAccount<WithAsyncMethod_CloseAccount<WithAsyncMethod_ShowAccount<WithAsyncMethod_UserLogin<WithAsyncMethod_ManagerLogin<WithAsyncMethod_ChangePassword<WithAsyncMethod_UserDemandDeposit<WithAsyncMethod_UserSavingDeposit<WithAsyncMethod_UserDemandWithdraw<WithAsyncMethod_UserSavingWithdraw<WithAsyncMethod_UserTransfer<WithAsyncMethod_UserLoan<WithAsyncMethod_UserLoanPay<WithAsyncMethod_LockUser<WithAsyncMethod_UnlockUser<WithAsyncMethod_AllAccountsBasicStatus<WithAsyncMethod_AllAccountsSavingDocument<WithAsyncMethod_ChangeManager<WithAsyncMethod_Exit<WithAsyncMethod_JudgeLocked<Service > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_LeaveMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_LeaveMessage() {
+      ::grpc::Service::MarkMethodAsync(21);
+    }
+    ~WithAsyncMethod_LeaveMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status LeaveMessage(::grpc::ServerContext* /*context*/, const ::bank::LeaveMessageRequest* /*request*/, ::bank::SimpleReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestLeaveMessage(::grpc::ServerContext* context, ::bank::LeaveMessageRequest* request, ::grpc::ServerAsyncResponseWriter< ::bank::SimpleReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ShowMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ShowMessage() {
+      ::grpc::Service::MarkMethodAsync(22);
+    }
+    ~WithAsyncMethod_ShowMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ShowMessage(::grpc::ServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::ShowMessageReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestShowMessage(::grpc::ServerContext* context, ::bank::SimpleRequest* request, ::grpc::ServerAsyncResponseWriter< ::bank::ShowMessageReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_CheckMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_CheckMessage() {
+      ::grpc::Service::MarkMethodAsync(23);
+    }
+    ~WithAsyncMethod_CheckMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CheckMessage(::grpc::ServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::CheckMessageReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCheckMessage(::grpc::ServerContext* context, ::bank::SimpleRequest* request, ::grpc::ServerAsyncResponseWriter< ::bank::CheckMessageReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_CleanMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_CleanMessage() {
+      ::grpc::Service::MarkMethodAsync(24);
+    }
+    ~WithAsyncMethod_CleanMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CleanMessage(::grpc::ServerContext* /*context*/, const ::bank::SelectRequest* /*request*/, ::bank::SimpleReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCleanMessage(::grpc::ServerContext* context, ::bank::SelectRequest* request, ::grpc::ServerAsyncResponseWriter< ::bank::SimpleReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_SayHello<WithAsyncMethod_CreateAccount<WithAsyncMethod_CloseAccount<WithAsyncMethod_ShowAccount<WithAsyncMethod_UserLogin<WithAsyncMethod_ManagerLogin<WithAsyncMethod_ChangePassword<WithAsyncMethod_UserDemandDeposit<WithAsyncMethod_UserSavingDeposit<WithAsyncMethod_UserDemandWithdraw<WithAsyncMethod_UserSavingWithdraw<WithAsyncMethod_UserTransfer<WithAsyncMethod_UserLoan<WithAsyncMethod_UserLoanPay<WithAsyncMethod_LockUser<WithAsyncMethod_UnlockUser<WithAsyncMethod_AllAccountsBasicStatus<WithAsyncMethod_AllAccountsSavingDocument<WithAsyncMethod_ChangeManager<WithAsyncMethod_Exit<WithAsyncMethod_JudgeLocked<WithAsyncMethod_LeaveMessage<WithAsyncMethod_ShowMessage<WithAsyncMethod_CheckMessage<WithAsyncMethod_CleanMessage<Service > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_SayHello : public BaseClass {
    private:
@@ -2239,11 +2459,199 @@ class Greeter final {
     #endif
       { return nullptr; }
   };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_LeaveMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_LeaveMessage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(21,
+          new ::grpc::internal::CallbackUnaryHandler< ::bank::LeaveMessageRequest, ::bank::SimpleReply>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::bank::LeaveMessageRequest* request, ::bank::SimpleReply* response) { return this->LeaveMessage(context, request, response); }));}
+    void SetMessageAllocatorFor_LeaveMessage(
+        ::grpc::experimental::MessageAllocator< ::bank::LeaveMessageRequest, ::bank::SimpleReply>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(21);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(21);
+    #endif
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::bank::LeaveMessageRequest, ::bank::SimpleReply>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_LeaveMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status LeaveMessage(::grpc::ServerContext* /*context*/, const ::bank::LeaveMessageRequest* /*request*/, ::bank::SimpleReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* LeaveMessage(
+      ::grpc::CallbackServerContext* /*context*/, const ::bank::LeaveMessageRequest* /*request*/, ::bank::SimpleReply* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* LeaveMessage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::bank::LeaveMessageRequest* /*request*/, ::bank::SimpleReply* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_ShowMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_ShowMessage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(22,
+          new ::grpc::internal::CallbackUnaryHandler< ::bank::SimpleRequest, ::bank::ShowMessageReply>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::bank::SimpleRequest* request, ::bank::ShowMessageReply* response) { return this->ShowMessage(context, request, response); }));}
+    void SetMessageAllocatorFor_ShowMessage(
+        ::grpc::experimental::MessageAllocator< ::bank::SimpleRequest, ::bank::ShowMessageReply>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(22);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(22);
+    #endif
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::bank::SimpleRequest, ::bank::ShowMessageReply>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_ShowMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ShowMessage(::grpc::ServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::ShowMessageReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* ShowMessage(
+      ::grpc::CallbackServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::ShowMessageReply* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ShowMessage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::ShowMessageReply* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_CheckMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_CheckMessage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(23,
+          new ::grpc::internal::CallbackUnaryHandler< ::bank::SimpleRequest, ::bank::CheckMessageReply>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::bank::SimpleRequest* request, ::bank::CheckMessageReply* response) { return this->CheckMessage(context, request, response); }));}
+    void SetMessageAllocatorFor_CheckMessage(
+        ::grpc::experimental::MessageAllocator< ::bank::SimpleRequest, ::bank::CheckMessageReply>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(23);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(23);
+    #endif
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::bank::SimpleRequest, ::bank::CheckMessageReply>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_CheckMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CheckMessage(::grpc::ServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::CheckMessageReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* CheckMessage(
+      ::grpc::CallbackServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::CheckMessageReply* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* CheckMessage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::CheckMessageReply* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_CleanMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_CleanMessage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(24,
+          new ::grpc::internal::CallbackUnaryHandler< ::bank::SelectRequest, ::bank::SimpleReply>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::bank::SelectRequest* request, ::bank::SimpleReply* response) { return this->CleanMessage(context, request, response); }));}
+    void SetMessageAllocatorFor_CleanMessage(
+        ::grpc::experimental::MessageAllocator< ::bank::SelectRequest, ::bank::SimpleReply>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(24);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(24);
+    #endif
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::bank::SelectRequest, ::bank::SimpleReply>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_CleanMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CleanMessage(::grpc::ServerContext* /*context*/, const ::bank::SelectRequest* /*request*/, ::bank::SimpleReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* CleanMessage(
+      ::grpc::CallbackServerContext* /*context*/, const ::bank::SelectRequest* /*request*/, ::bank::SimpleReply* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* CleanMessage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::bank::SelectRequest* /*request*/, ::bank::SimpleReply* /*response*/)
+    #endif
+      { return nullptr; }
+  };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_SayHello<ExperimentalWithCallbackMethod_CreateAccount<ExperimentalWithCallbackMethod_CloseAccount<ExperimentalWithCallbackMethod_ShowAccount<ExperimentalWithCallbackMethod_UserLogin<ExperimentalWithCallbackMethod_ManagerLogin<ExperimentalWithCallbackMethod_ChangePassword<ExperimentalWithCallbackMethod_UserDemandDeposit<ExperimentalWithCallbackMethod_UserSavingDeposit<ExperimentalWithCallbackMethod_UserDemandWithdraw<ExperimentalWithCallbackMethod_UserSavingWithdraw<ExperimentalWithCallbackMethod_UserTransfer<ExperimentalWithCallbackMethod_UserLoan<ExperimentalWithCallbackMethod_UserLoanPay<ExperimentalWithCallbackMethod_LockUser<ExperimentalWithCallbackMethod_UnlockUser<ExperimentalWithCallbackMethod_AllAccountsBasicStatus<ExperimentalWithCallbackMethod_AllAccountsSavingDocument<ExperimentalWithCallbackMethod_ChangeManager<ExperimentalWithCallbackMethod_Exit<ExperimentalWithCallbackMethod_JudgeLocked<Service > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  typedef ExperimentalWithCallbackMethod_SayHello<ExperimentalWithCallbackMethod_CreateAccount<ExperimentalWithCallbackMethod_CloseAccount<ExperimentalWithCallbackMethod_ShowAccount<ExperimentalWithCallbackMethod_UserLogin<ExperimentalWithCallbackMethod_ManagerLogin<ExperimentalWithCallbackMethod_ChangePassword<ExperimentalWithCallbackMethod_UserDemandDeposit<ExperimentalWithCallbackMethod_UserSavingDeposit<ExperimentalWithCallbackMethod_UserDemandWithdraw<ExperimentalWithCallbackMethod_UserSavingWithdraw<ExperimentalWithCallbackMethod_UserTransfer<ExperimentalWithCallbackMethod_UserLoan<ExperimentalWithCallbackMethod_UserLoanPay<ExperimentalWithCallbackMethod_LockUser<ExperimentalWithCallbackMethod_UnlockUser<ExperimentalWithCallbackMethod_AllAccountsBasicStatus<ExperimentalWithCallbackMethod_AllAccountsSavingDocument<ExperimentalWithCallbackMethod_ChangeManager<ExperimentalWithCallbackMethod_Exit<ExperimentalWithCallbackMethod_JudgeLocked<ExperimentalWithCallbackMethod_LeaveMessage<ExperimentalWithCallbackMethod_ShowMessage<ExperimentalWithCallbackMethod_CheckMessage<ExperimentalWithCallbackMethod_CleanMessage<Service > > > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_SayHello<ExperimentalWithCallbackMethod_CreateAccount<ExperimentalWithCallbackMethod_CloseAccount<ExperimentalWithCallbackMethod_ShowAccount<ExperimentalWithCallbackMethod_UserLogin<ExperimentalWithCallbackMethod_ManagerLogin<ExperimentalWithCallbackMethod_ChangePassword<ExperimentalWithCallbackMethod_UserDemandDeposit<ExperimentalWithCallbackMethod_UserSavingDeposit<ExperimentalWithCallbackMethod_UserDemandWithdraw<ExperimentalWithCallbackMethod_UserSavingWithdraw<ExperimentalWithCallbackMethod_UserTransfer<ExperimentalWithCallbackMethod_UserLoan<ExperimentalWithCallbackMethod_UserLoanPay<ExperimentalWithCallbackMethod_LockUser<ExperimentalWithCallbackMethod_UnlockUser<ExperimentalWithCallbackMethod_AllAccountsBasicStatus<ExperimentalWithCallbackMethod_AllAccountsSavingDocument<ExperimentalWithCallbackMethod_ChangeManager<ExperimentalWithCallbackMethod_Exit<ExperimentalWithCallbackMethod_JudgeLocked<Service > > > > > > > > > > > > > > > > > > > > > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_SayHello<ExperimentalWithCallbackMethod_CreateAccount<ExperimentalWithCallbackMethod_CloseAccount<ExperimentalWithCallbackMethod_ShowAccount<ExperimentalWithCallbackMethod_UserLogin<ExperimentalWithCallbackMethod_ManagerLogin<ExperimentalWithCallbackMethod_ChangePassword<ExperimentalWithCallbackMethod_UserDemandDeposit<ExperimentalWithCallbackMethod_UserSavingDeposit<ExperimentalWithCallbackMethod_UserDemandWithdraw<ExperimentalWithCallbackMethod_UserSavingWithdraw<ExperimentalWithCallbackMethod_UserTransfer<ExperimentalWithCallbackMethod_UserLoan<ExperimentalWithCallbackMethod_UserLoanPay<ExperimentalWithCallbackMethod_LockUser<ExperimentalWithCallbackMethod_UnlockUser<ExperimentalWithCallbackMethod_AllAccountsBasicStatus<ExperimentalWithCallbackMethod_AllAccountsSavingDocument<ExperimentalWithCallbackMethod_ChangeManager<ExperimentalWithCallbackMethod_Exit<ExperimentalWithCallbackMethod_JudgeLocked<ExperimentalWithCallbackMethod_LeaveMessage<ExperimentalWithCallbackMethod_ShowMessage<ExperimentalWithCallbackMethod_CheckMessage<ExperimentalWithCallbackMethod_CleanMessage<Service > > > > > > > > > > > > > > > > > > > > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SayHello : public BaseClass {
    private:
@@ -2597,6 +3005,74 @@ class Greeter final {
     }
     // disable synchronous version of this method
     ::grpc::Status JudgeLocked(::grpc::ServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::LockedReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_LeaveMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_LeaveMessage() {
+      ::grpc::Service::MarkMethodGeneric(21);
+    }
+    ~WithGenericMethod_LeaveMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status LeaveMessage(::grpc::ServerContext* /*context*/, const ::bank::LeaveMessageRequest* /*request*/, ::bank::SimpleReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ShowMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ShowMessage() {
+      ::grpc::Service::MarkMethodGeneric(22);
+    }
+    ~WithGenericMethod_ShowMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ShowMessage(::grpc::ServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::ShowMessageReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_CheckMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_CheckMessage() {
+      ::grpc::Service::MarkMethodGeneric(23);
+    }
+    ~WithGenericMethod_CheckMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CheckMessage(::grpc::ServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::CheckMessageReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_CleanMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_CleanMessage() {
+      ::grpc::Service::MarkMethodGeneric(24);
+    }
+    ~WithGenericMethod_CleanMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CleanMessage(::grpc::ServerContext* /*context*/, const ::bank::SelectRequest* /*request*/, ::bank::SimpleReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -3019,6 +3495,86 @@ class Greeter final {
     }
     void RequestJudgeLocked(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_LeaveMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_LeaveMessage() {
+      ::grpc::Service::MarkMethodRaw(21);
+    }
+    ~WithRawMethod_LeaveMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status LeaveMessage(::grpc::ServerContext* /*context*/, const ::bank::LeaveMessageRequest* /*request*/, ::bank::SimpleReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestLeaveMessage(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ShowMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ShowMessage() {
+      ::grpc::Service::MarkMethodRaw(22);
+    }
+    ~WithRawMethod_ShowMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ShowMessage(::grpc::ServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::ShowMessageReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestShowMessage(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_CheckMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_CheckMessage() {
+      ::grpc::Service::MarkMethodRaw(23);
+    }
+    ~WithRawMethod_CheckMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CheckMessage(::grpc::ServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::CheckMessageReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCheckMessage(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_CleanMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_CleanMessage() {
+      ::grpc::Service::MarkMethodRaw(24);
+    }
+    ~WithRawMethod_CleanMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CleanMessage(::grpc::ServerContext* /*context*/, const ::bank::SelectRequest* /*request*/, ::bank::SimpleReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCleanMessage(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(24, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3820,6 +4376,158 @@ class Greeter final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_LeaveMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_LeaveMessage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(21,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->LeaveMessage(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_LeaveMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status LeaveMessage(::grpc::ServerContext* /*context*/, const ::bank::LeaveMessageRequest* /*request*/, ::bank::SimpleReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* LeaveMessage(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* LeaveMessage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_ShowMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_ShowMessage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(22,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ShowMessage(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_ShowMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ShowMessage(::grpc::ServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::ShowMessageReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* ShowMessage(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* ShowMessage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_CheckMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_CheckMessage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(23,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CheckMessage(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_CheckMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CheckMessage(::grpc::ServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::CheckMessageReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* CheckMessage(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* CheckMessage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_CleanMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_CleanMessage() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(24,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CleanMessage(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_CleanMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CleanMessage(::grpc::ServerContext* /*context*/, const ::bank::SelectRequest* /*request*/, ::bank::SimpleReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* CleanMessage(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* CleanMessage(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_SayHello : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -4386,9 +5094,117 @@ class Greeter final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedJudgeLocked(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::bank::SimpleRequest,::bank::LockedReply>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_SayHello<WithStreamedUnaryMethod_CreateAccount<WithStreamedUnaryMethod_CloseAccount<WithStreamedUnaryMethod_ShowAccount<WithStreamedUnaryMethod_UserLogin<WithStreamedUnaryMethod_ManagerLogin<WithStreamedUnaryMethod_ChangePassword<WithStreamedUnaryMethod_UserDemandDeposit<WithStreamedUnaryMethod_UserSavingDeposit<WithStreamedUnaryMethod_UserDemandWithdraw<WithStreamedUnaryMethod_UserSavingWithdraw<WithStreamedUnaryMethod_UserTransfer<WithStreamedUnaryMethod_UserLoan<WithStreamedUnaryMethod_UserLoanPay<WithStreamedUnaryMethod_LockUser<WithStreamedUnaryMethod_UnlockUser<WithStreamedUnaryMethod_AllAccountsBasicStatus<WithStreamedUnaryMethod_AllAccountsSavingDocument<WithStreamedUnaryMethod_ChangeManager<WithStreamedUnaryMethod_Exit<WithStreamedUnaryMethod_JudgeLocked<Service > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_LeaveMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_LeaveMessage() {
+      ::grpc::Service::MarkMethodStreamed(21,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::bank::LeaveMessageRequest, ::bank::SimpleReply>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::bank::LeaveMessageRequest, ::bank::SimpleReply>* streamer) {
+                       return this->StreamedLeaveMessage(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_LeaveMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status LeaveMessage(::grpc::ServerContext* /*context*/, const ::bank::LeaveMessageRequest* /*request*/, ::bank::SimpleReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedLeaveMessage(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::bank::LeaveMessageRequest,::bank::SimpleReply>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ShowMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ShowMessage() {
+      ::grpc::Service::MarkMethodStreamed(22,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::bank::SimpleRequest, ::bank::ShowMessageReply>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::bank::SimpleRequest, ::bank::ShowMessageReply>* streamer) {
+                       return this->StreamedShowMessage(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ShowMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ShowMessage(::grpc::ServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::ShowMessageReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedShowMessage(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::bank::SimpleRequest,::bank::ShowMessageReply>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_CheckMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_CheckMessage() {
+      ::grpc::Service::MarkMethodStreamed(23,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::bank::SimpleRequest, ::bank::CheckMessageReply>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::bank::SimpleRequest, ::bank::CheckMessageReply>* streamer) {
+                       return this->StreamedCheckMessage(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_CheckMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status CheckMessage(::grpc::ServerContext* /*context*/, const ::bank::SimpleRequest* /*request*/, ::bank::CheckMessageReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCheckMessage(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::bank::SimpleRequest,::bank::CheckMessageReply>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_CleanMessage : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_CleanMessage() {
+      ::grpc::Service::MarkMethodStreamed(24,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::bank::SelectRequest, ::bank::SimpleReply>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::bank::SelectRequest, ::bank::SimpleReply>* streamer) {
+                       return this->StreamedCleanMessage(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_CleanMessage() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status CleanMessage(::grpc::ServerContext* /*context*/, const ::bank::SelectRequest* /*request*/, ::bank::SimpleReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCleanMessage(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::bank::SelectRequest,::bank::SimpleReply>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_SayHello<WithStreamedUnaryMethod_CreateAccount<WithStreamedUnaryMethod_CloseAccount<WithStreamedUnaryMethod_ShowAccount<WithStreamedUnaryMethod_UserLogin<WithStreamedUnaryMethod_ManagerLogin<WithStreamedUnaryMethod_ChangePassword<WithStreamedUnaryMethod_UserDemandDeposit<WithStreamedUnaryMethod_UserSavingDeposit<WithStreamedUnaryMethod_UserDemandWithdraw<WithStreamedUnaryMethod_UserSavingWithdraw<WithStreamedUnaryMethod_UserTransfer<WithStreamedUnaryMethod_UserLoan<WithStreamedUnaryMethod_UserLoanPay<WithStreamedUnaryMethod_LockUser<WithStreamedUnaryMethod_UnlockUser<WithStreamedUnaryMethod_AllAccountsBasicStatus<WithStreamedUnaryMethod_AllAccountsSavingDocument<WithStreamedUnaryMethod_ChangeManager<WithStreamedUnaryMethod_Exit<WithStreamedUnaryMethod_JudgeLocked<WithStreamedUnaryMethod_LeaveMessage<WithStreamedUnaryMethod_ShowMessage<WithStreamedUnaryMethod_CheckMessage<WithStreamedUnaryMethod_CleanMessage<Service > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SayHello<WithStreamedUnaryMethod_CreateAccount<WithStreamedUnaryMethod_CloseAccount<WithStreamedUnaryMethod_ShowAccount<WithStreamedUnaryMethod_UserLogin<WithStreamedUnaryMethod_ManagerLogin<WithStreamedUnaryMethod_ChangePassword<WithStreamedUnaryMethod_UserDemandDeposit<WithStreamedUnaryMethod_UserSavingDeposit<WithStreamedUnaryMethod_UserDemandWithdraw<WithStreamedUnaryMethod_UserSavingWithdraw<WithStreamedUnaryMethod_UserTransfer<WithStreamedUnaryMethod_UserLoan<WithStreamedUnaryMethod_UserLoanPay<WithStreamedUnaryMethod_LockUser<WithStreamedUnaryMethod_UnlockUser<WithStreamedUnaryMethod_AllAccountsBasicStatus<WithStreamedUnaryMethod_AllAccountsSavingDocument<WithStreamedUnaryMethod_ChangeManager<WithStreamedUnaryMethod_Exit<WithStreamedUnaryMethod_JudgeLocked<Service > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_SayHello<WithStreamedUnaryMethod_CreateAccount<WithStreamedUnaryMethod_CloseAccount<WithStreamedUnaryMethod_ShowAccount<WithStreamedUnaryMethod_UserLogin<WithStreamedUnaryMethod_ManagerLogin<WithStreamedUnaryMethod_ChangePassword<WithStreamedUnaryMethod_UserDemandDeposit<WithStreamedUnaryMethod_UserSavingDeposit<WithStreamedUnaryMethod_UserDemandWithdraw<WithStreamedUnaryMethod_UserSavingWithdraw<WithStreamedUnaryMethod_UserTransfer<WithStreamedUnaryMethod_UserLoan<WithStreamedUnaryMethod_UserLoanPay<WithStreamedUnaryMethod_LockUser<WithStreamedUnaryMethod_UnlockUser<WithStreamedUnaryMethod_AllAccountsBasicStatus<WithStreamedUnaryMethod_AllAccountsSavingDocument<WithStreamedUnaryMethod_ChangeManager<WithStreamedUnaryMethod_Exit<WithStreamedUnaryMethod_JudgeLocked<WithStreamedUnaryMethod_LeaveMessage<WithStreamedUnaryMethod_ShowMessage<WithStreamedUnaryMethod_CheckMessage<WithStreamedUnaryMethod_CleanMessage<Service > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace bank

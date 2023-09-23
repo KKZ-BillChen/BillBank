@@ -149,18 +149,18 @@ protoc -I=../proto --grpc_out=../proto --plugin=protoc-gen-grpc="c:\home\grpc-ba
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Account.cpp" />
+    <ClCompile Include="..\common\client\service.cpp" />
     <ClCompile Include="..\common\container.cpp" />
     <ClCompile Include="..\proto\bank.grpc.pb.cc" />
     <ClCompile Include="..\proto\bank.pb.cc" />
     <ClCompile Include="bank_client.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="service.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\common\client\service.h" />
     <ClInclude Include="..\proto\bank.grpc.pb.h" />
     <ClInclude Include="..\proto\bank.pb.h" />
     <ClInclude Include="bank_client.h" />
-    <ClInclude Include="service.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

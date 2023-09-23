@@ -9,10 +9,13 @@ void clear_screen()
 }
 void pause_screen() {
 #if defined _WIN32
+	sleep_for(seconds(1));
 	system("pause");
 #else
 	std::cout << "Press any key to continue..." << endl;
+	sleep_for(seconds(1));
 	system("read");
+	
 #endif
 }
 void color(int c) {
@@ -21,9 +24,8 @@ void color(int c) {
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), c);
 	else
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-#else
-	std::cout << "Press any key to continue..." << endl;
-	system("read");
+//#else
+	
 #endif
 }
 TypeOfSavings change_between_TypeOfSavings_and_int(int a) {

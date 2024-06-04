@@ -44,9 +44,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="bank-gui.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="bank-guiDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -66,6 +63,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\proto\bank.pb.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="bank-gui.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

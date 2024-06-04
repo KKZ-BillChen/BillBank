@@ -61,7 +61,7 @@ protected:
 	CStatic txt[250];
 	CEdit edt[250];
 	// 生成的消息映射函数
-	
+
 	virtual BOOL OnInitDialog();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();

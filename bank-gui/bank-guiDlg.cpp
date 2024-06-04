@@ -152,12 +152,10 @@ BOOL CbankguiDlg::OnInitDialog()
 	//  执行此操作
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
-	
+
 	// TODO: 在此添加额外的初始化代码
-	//BILL'S BANK\n┏━━━━━━━━━━━━━━━━━┓\n┃                                  ┃\n┃               BANK               ┃\n┃            MANAGEMENT            ┃\n┃              SYSTEM              ┃\n┃                                  ┃\n┗━━━━━━━━━━━━━━━━━┛\nMADE BY : BILL CHEN
 	cfont[0].CreatePointFont(145, _T("Consolas"), NULL);
 	cfont[1].CreatePointFont(126, _T("Consolas"), NULL);
-	//btn = new CButton[250]; edt = new CEdit[250]; txt = new CStatic[250];
 	btn[0].Create(_T("Enter"), WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, CRect(655, 465, 735, 495), this, IDC_BUTTON_ENTER);
 	btn[1].Create(_T("New Account"), WS_CHILD | BS_PUSHBUTTON, CRect(615, 465, 735, 495), this, IDC_BUTTON_NEW_ACCOUNT);
 	btn[2].Create(_T("User Login"), WS_CHILD | BS_PUSHBUTTON, CRect(340, 180, 460, 210), this, IDC_BUTTON_USER_LOGIN);
@@ -192,18 +190,13 @@ BOOL CbankguiDlg::OnInitDialog()
 	//cpp文件
 	((CStatic*)GetDlgItem(IDC_IMAGE_1))->SetBitmap(::LoadBitmap(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(IDB_BITMAP1)));
 	GetDlgItem(IDC_IMAGE_1)->ShowWindow(SW_SHOW);
-	// 
-	//img[0].Create();
-	//p_MyBut = NewMyButton(IDC_BUTTON_ENTER, CRect(20, 10, 80, 40), 0);
 	GetDlgItem(IDC_STATIC_ENTER)->SetFont(&cfont[0]);
 	GetDlgItem(IDC_STATIC_NEW_ACCOUNT)->SetFont(&cfont[1]);	
-	GetDlgItem(IDC_BUTTON_ENTER)->ModifyStyle(0, BST_CHECKED);
-	((CButton*)GetDlgItem(IDC_BUTTON_ENTER))->SetCheck(TRUE);
-	GetDlgItem(IDC_STATIC)->ShowWindow(SW_SHOW);
-	GetDlgItem(IDC_BUTTON_ENTER)->ShowWindow(SW_SHOW);
-	//GetDlgItem(IDC_BUTTON_USERLOGIN)->ShowWindow(SW_HIDE);
-	//GetDlgItem(IDC_BUTTON_MANAGERLOGIN)->ShowWindow(SW_HIDE);
-	//GetDlgItem(IDC_BUTTON_BANKDETAIL)->ShowWindow(SW_HIDE);
+	//GetDlgItem(IDC_BUTTON_ENTER)->ModifyStyle(0, BST_CHECKED);
+	//((CButton*)GetDlgItem(IDC_BUTTON_ENTER))->SetCheck(TRUE);
+	//GetDlgItem(IDC_STATIC)->ShowWindow(SW_SHOW);
+	//GetDlgItem(IDC_BUTTON_ENTER)->ShowWindow(SW_SHOW);
+	//GetDlgItem(IDC_STATIC)->ShowWindow(SW_SHOW);*/
 	return FALSE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 void CbankguiDlg::OnSysCommand(UINT nID, LPARAM lParam)
@@ -327,7 +320,7 @@ void CbankguiDlg::OnBnClickedCheckToSee2() {
 void CbankguiDlg::OnBnClickedRadioOkra() { 
 	if (BST_CHECKED == IsDlgButtonChecked(IDC_RADIO_OKRA)) {
 		((CEdit*)GetDlgItem(IDC_EDIT_NEW_ACCOUNT_INITIALBALANCE))->EnableWindow(TRUE);
-		((CEdit*)GetDlgItem(IDC_STATIC_INITIAL_BALANCE))->SetWindowTextW(L"BIL ( >= 666 )");
+		((CEdit*)GetDlgItem(IDC_STATIC_INITIAL_BALANCE))->SetWindowTextW(L"BIL ( >= 500 )");
 		GetDlgItem(IDC_STATIC_INITIAL_BALANCE)->ShowWindow(SW_SHOW);
 		Invalidate();
 	}
@@ -348,7 +341,7 @@ void CbankguiDlg::OnBnClickedButtonNewAccountNext() {
 void CbankguiDlg::OnBnClickedRadioHollyhock() {
 	if (BST_CHECKED == IsDlgButtonChecked(IDC_RADIO_HOLLYHOCK)) {
 		((CEdit*)GetDlgItem(IDC_EDIT_NEW_ACCOUNT_INITIALBALANCE))->EnableWindow(TRUE);
-		((CEdit*)GetDlgItem(IDC_STATIC_INITIAL_BALANCE))->SetWindowTextW(L"BIL ( >= 66666 )");
+		((CEdit*)GetDlgItem(IDC_STATIC_INITIAL_BALANCE))->SetWindowTextW(L"BIL ( >= 50000 )");
 		GetDlgItem(IDC_STATIC_INITIAL_BALANCE)->ShowWindow(SW_SHOW);
 		Invalidate();
 	}
@@ -356,7 +349,7 @@ void CbankguiDlg::OnBnClickedRadioHollyhock() {
 void CbankguiDlg::OnBnClickedRadioNightshade() {
 	if (BST_CHECKED == IsDlgButtonChecked(IDC_RADIO_NIGHTSHADE)) { 
 		((CEdit*)GetDlgItem(IDC_EDIT_NEW_ACCOUNT_INITIALBALANCE))->EnableWindow(TRUE);
-		((CEdit*)GetDlgItem(IDC_STATIC_INITIAL_BALANCE))->SetWindowTextW(L"BIL ( >= 6666666 )");
+		((CEdit*)GetDlgItem(IDC_STATIC_INITIAL_BALANCE))->SetWindowTextW(L"BIL ( >= 500000 )");
 		GetDlgItem(IDC_STATIC_INITIAL_BALANCE)->ShowWindow(SW_SHOW);
 		Invalidate();
 	}

@@ -127,8 +127,8 @@
       <AdditionalDependencies>libprotobufd.lib;grpc.lib;grpc++.lib;gpr.lib;Ws2_32.lib;zlibd.lib;cares.lib;address_sorting.lib;abseil_dll.lib;absl_flags.lib;absl_flags_commandlineflag.lib;absl_flags_commandlineflag_internal.lib;absl_flags_config.lib;absl_flags_internal.lib;absl_flags_marshalling.lib;absl_flags_parse.lib;absl_flags_private_handle_accessor.lib;absl_flags_program_name.lib;absl_flags_reflection.lib;absl_flags_usage.lib;absl_flags_usage_internal.lib;absl_random_internal_distribution_test_util.lib;absl_statusor.lib;absl_strerror.lib;absl_wyhash.lib;upb.lib;upb_fastdecode.lib;upb_handlers.lib;upb_json.lib;upb_pb.lib;upb_reflection.lib;upb_textformat.lib;re2.lib;libssl.lib;libcrypto.lib;grpc_csharp_ext.lib;grpc_plugin_support.lib;grpc_unsecure.lib;grpc_upbdefs.lib;grpc++_alts.lib;grpc++_error_details.lib;grpc++_reflection.lib;grpc++_unsecure.lib;grpcpp_channelz.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>protoc -I=../proto --cpp_out=../proto bank.proto
-protoc -I=../proto --grpc_out=../proto --plugin=protoc-gen-grpc="c:\home\grpc-bank\proto\grpc_cpp_plugin.exe" bank.proto</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
